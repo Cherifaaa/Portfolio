@@ -183,7 +183,7 @@ header{
     left: 0;
     width: 100%;
     height:100%;
-    background: linear-gradient(90deg , rgba(255,255,255,0) 46% , rgba(92,39,255,0.3) 100%);
+    background: linear-gradient(90deg , rgba(255,255,255,0) 46% , rgba(70, 33, 33, 0.3) 100%);
     filter: blur(10px);
     z-index: -1;
 }
@@ -231,10 +231,13 @@ header{
 .hero_img {
     width: 40%;
     position: relative;
+    z-index: 2;
 }
-.hero_img img{
+.hero_img2 img{
     width: 100%;
     border-radius: 100px;
+    position: relative;
+    z-index: 2;
 }
 .hero_img:after{
     content: '';
@@ -246,6 +249,7 @@ header{
     height: 100%;
     border-radius: 100px;
     background-color: rgba(255,255,255,0.1);
+    z-index: 1;
 }
 .hero_img:before{
     content: '';
@@ -257,23 +261,34 @@ header{
     height: 100%;
     border-radius: 100px;
     background-color: rgba(255,255,255,0.1);
+    z-index: 0;
 }
 .img_box{
     position: absolute;
     top: 10%;
     left: 80%;
-    padding: 20px;
     width: 220px;
+    /*padding: 20px;
+    
     border-radius: 20px;
-    background-color: var(--white-color);
+  
     display: flex;
-    align-items: center;
+    align-items: center;*/
     gap: 10px;
     animation: Anim_LR 5s infinite linear;
+    z-index: 4;
 }
 .img_box img{
-    width: 60px;
-    height: 60px;
+    width: 120px;
+    height: 120px;
+    z-index: 5;
+    
+}
+.img_box2 img{
+    width: 140px;
+    height: 140px;
+    z-index: 5;
+    
 }
 .box_info {
     display: flex;
@@ -292,7 +307,7 @@ header{
 .img_box2{
     width: 300px;
     top: 80%;
-    left: -20%;
+    left: -15%;
     animation: Anim_TB 5s infinite linear;
 }
 
