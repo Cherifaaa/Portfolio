@@ -218,10 +218,9 @@ header{
     margin-top: 50px;
 }
 .brandSwiper .swiper-slide img{
-    width: 100px;
-    height: 40px; 
+    width: 75px;
+    height: 75px; 
     object-fit: contain;
-    filter: brightness(40%);
     transition: var(--transition);
 }
 .brandSwiper .swiper-slide:hover img{
@@ -265,9 +264,9 @@ header{
 }
 .img_box{
     position: absolute;
-    top: 10%;
+    top: 3%;
     left: 80%;
-    width: 220px;
+    width: 160px;
     /*padding: 20px;
     
     border-radius: 20px;
@@ -279,14 +278,14 @@ header{
     z-index: 4;
 }
 .img_box img{
-    width: 120px;
-    height: 120px;
+    width: 130px;
+    height: 130px;
     z-index: 5;
     
 }
 .img_box2 img{
-    width: 140px;
-    height: 140px;
+    width: 150px;
+    height: 150px;
     z-index: 5;
     
 }
