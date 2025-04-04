@@ -1216,7 +1216,18 @@ header{
 
 /* MQ SECTION  */
 
+@media (max-width:1500px) {
+    body {
+        background: url('Images/fond2.png') no-repeat top center;
+        background-size: 100% auto;
+    }
+}
+
 @media (max-width:1200px) {
+    body {
+        background: url('Images/fond2.png') no-repeat top center;
+        background-size: 100% auto;
+    }
     .hero_content h1{
         font-size: 2rem;
         line-height: 2.5rem;
@@ -1304,9 +1315,18 @@ header{
         font-size: 2rem;
     }
 }
-@media (max-width:900px) {
+@media (max-width:1070px) {
+    
     body {
         background: url('Images/fond3.png') no-repeat top center;
+        background-size: 100% auto;
+    }
+}
+
+@media (max-width:900px) {
+    
+    body {
+        background: url('Images/fond4.png') no-repeat top center;
         background-size: 100% auto;
     }
     .bars{
@@ -1446,7 +1466,17 @@ header{
         font-size: 1.5rem;
     }
 }
+@media (max-width:690px) {
+    body {
+        background: url('Images/fond5.png') no-repeat top center;
+        background-size: 100% auto;
+    }
+}
 @media (max-width:500px) {
+    body {
+        background: url('Images/fond6.png') no-repeat top center;
+        background-size: 100% auto;
+    }
     .nav_btns{
         display: none;
     }
