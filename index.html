@@ -13,6 +13,8 @@
 </head>
 
 <body>
+    <div id="background"></div>
+
 
     <!-- NAV  -->
     <nav>
@@ -29,8 +31,9 @@
         </ul>
         <div class="nav_btns">
             <i class="ri-search-line"></i>
-            <button>Join Now</button>
+            <img id="heart-btn" src="Images/coeur1.png" alt="Like Button">
         </div>
+        
         <div class="bars">
             <i class="ri-menu-2-line"></i>
         </div>
@@ -164,6 +167,19 @@
     <!-- Swiper Slider JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const heartBtn = document.getElementById("heart-btn");
+            let isLiked = false;
+    
+            heartBtn.addEventListener("click", function () {
+                isLiked = !isLiked;
+                heartBtn.src = isLiked ? "Images/coeur2.png" : "Images/coeur1.png";
+            });
+        });
+    </script>
+    
 
 </body>
 

@@ -120,6 +120,18 @@ nav{
 .menu li:hover a{
     color: var(--prim-color);
 }
+
+#heart-btn {
+    width: 65px; 
+    height: 65px;
+    cursor: pointer; /* Pour montrer que c'est cliquable */
+    transition: transform 0.3s ease; /* Effet smooth */
+}
+
+#heart-btn:hover {
+    transform: scale(1.1); /* Petit effet zoom au survol */
+}
+
 .nav_btns {
     display: flex;
     align-items: center;
@@ -339,7 +351,7 @@ header{
 }
 .bg_shape{
     position: absolute;
-    top: 60%;
+    top: 40%;
     right: 0;
     width: 700px;
     height: 700px;
@@ -1293,6 +1305,10 @@ header{
     }
 }
 @media (max-width:900px) {
+    body {
+        background: url('Images/fond3.png') no-repeat top center;
+        background-size: 100% auto;
+    }
     .bars{
         display: flex;
         justify-content: center;
