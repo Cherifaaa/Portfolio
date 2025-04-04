@@ -23,11 +23,32 @@
     font-family: 'Poppins';
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: url('Images/fond.png') no-repeat top center;
+    background-size: 100% auto; /* Largeur 100%, hauteur automatique pour éviter la coupe */
+}
+
+#page-container {
+    width: 100%;
+    height: auto;
+    min-height: 100vh; /* Assure que la page ne soit jamais plus petite que l'écran */
+    background: url('Images/fond.png') no-repeat top center;
+    background-size: 100% auto; /* L’image garde ses proportions */
+}
+
+
 
 :root{
-    --body-color: #060606;
-    --prim-color:#878787;
-    --gradient-color:linear-gradient(264.28deg, #818181 38.2%, #070607 103.12%), rgba(255,255,255,0.1);
+    /* --body-color: #060606;
+    --prim-color:#330000;*/
+    --gradient-color:linear-gradient(264.28deg, #330000 38.2%, #070607 103.12%), rgba(255,255,255,0.1);
     --sec-gradient-color:linear-gradient(265.05deg, #FFCB52 -6.15%, #FF7B02 106.32%);
     --white-color: #fff;
     --black-color:#000;
