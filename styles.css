@@ -94,7 +94,7 @@ nav{
     padding: 0 12%;
 }
 
-.logo a{
+/*.logo a{
     font-size: 2rem;
     font-weight: 600;
     font-family: var(--Kaushan-font);
@@ -105,7 +105,18 @@ nav{
 }
 .logo a span{
     font-family: var(--Kaushan-font);
+}*/
+
+.logo a {
+    display: inline-block;
 }
+
+.logo img {
+    width: 185px; /* ajuste la taille selon ton besoin */
+    height: 50px;
+    display: block;
+}
+
 .menu {
     display: flex;
     align-items: center;
@@ -558,10 +569,10 @@ header{
     margin: 10px 0;
 }
 .speciality_card_info h1{
-    font-size: 4rem;
+    font-size: 2.2rem;
     line-height: 4rem;
     font-weight: 500;
-    font-family: var(--Conthrax-bold);
+    font-family: Brasika;
     opacity: 0.3;
     transition: var(--transition);
 }
