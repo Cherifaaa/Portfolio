@@ -12,7 +12,7 @@
       background: #141414;
       border-radius: 50px;
       padding: 5px;
-      width: 300px;
+      width: 450px;
       margin: 40px auto;
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
@@ -34,7 +34,7 @@
       position: absolute;
       top: 5px;
       bottom: 5px;
-      width: 50%;
+      width: 33.33%;
       border-radius: 50px;
       background: linear-gradient(135deg, #530000, #220000);
       transition: all 0.3s ease;
@@ -61,14 +61,99 @@
       max-width: 250px;
       border-radius: 10px;
       object-fit: cover;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+    .gallery-section img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+}
+
+/* LIGHTBOX */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 15, 15, 0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 999;
+}
+
+.lightbox img {
+  width: auto;
+  height: auto;
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.7);
+}
+
+
+.lightbox-title {
+  margin-top: 20px;
+  color: white;
+  font-size: 1.2rem;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40px;
+  transform: translateY(-50%);
+}
+
+.lightbox-nav button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.lightbox-nav button:hover {
+  color: #ff5555;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+
+
+    
   </style>
 </head>
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightbox-close">&times;</span>
+    <div class="lightbox-nav">
+      <button id="prev">&lt;</button>
+      <button id="next">&gt;</button>
+    </div>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-title" id="lightbox-title"></div>
+  </div>
+  
+  
 <body>
 
     <div id="background"></div>
 
-
+   
     <!-- NAV  -->
     <nav>
         <div class="logo">
@@ -76,7 +161,6 @@
         </div>
         <ul class="menu">
             <li><a href="index.html">Accueil</a></li>
-            <li><a href="#">A propos</a></li>
             <li><a href="#">Arts</a></li>
             <li><a href="#">Videos</a></li>
             <li><a href="#">Jeux</a></li>
@@ -92,37 +176,54 @@
         </div>
     </nav>
 
+    <h1 class="gallery-title">Arts</h1>
+
 
   <div class="switch-container">
     <div class="slider-bg" id="slider"></div>
     <button class="switch-btn active" data-category="papier">Papier</button>
     <button class="switch-btn" data-category="digital">Digital</button>
+    <button class="switch-btn" data-category="affiche">Affiche</button>
+    
   </div>
 
   <div id="papier" class="gallery-section active">
     
     
-    <img src="Images/tower.png" alt="">
-    <img src="Images/tomie.png" alt="">
-    <img src="Images/slayer.JPG" alt="">
-    <img src="Images/promised.png" alt="">
-    <img src="Images/kaneki2.jpg" alt="">
-    <img src="Images/kaneki.jpg" alt="">
-    <img src="Images/breaking.jpg" alt="">
-    <img src="Images/spider.JPG" alt="">
-    <img src="Images/vinland.jpg" alt="">
-    <img src="Images/killua.JPG" alt="">
-    <img src="Images/berserk.jpg" alt="">
-    <img src="Images/monter.jpg" alt="">
+    <img src="Images/tower.png" alt="Tower" data-title="Baam - Tower of God">
+    <img src="Images/tomie.png" alt="Tomie" data-title="Tomie - Tomie/Junji Ito">
+    <img src="Images/slayer.JPG" alt="Slayer" data-title="Tanjirō  - Demon Slayer">
+    <img src="Images/promised.png" alt="Promised" data-title="Isabella - The Promised Neverland">
+    <img src="Images/kaneki2.jpg" alt="Kaneki2" data-title="Kaneki - Tokyo Ghoul">
+    <img src="Images/kaneki.jpg" alt="Kaneki" data-title="Kaneki - Tokyo Ghoul">
+    <img src="Images/breaking.jpg" alt="Breaking Bad" data-title=" Heisenberg - Breaking Bad">
+    <img src="Images/spider.JPG" alt="Spider" data-title=" Venom - Spider-Man">
+    <img src="Images/vinland.jpg" alt="Vinland" data-title="Gardar - Vinland Saga">
+    <img src="Images/killua.JPG" alt="Killua" data-title="Killua - Hunter X Hunter">
+    <img src="Images/berserk.jpg" alt="Berserk" data-title="Guts/Griffith - Berserk">
+    <img src="Images/monter.jpg" alt="Monster" data-title="Johan - Monster">
     
     
 
   </div>
 
   <div id="digital" class="gallery-section">
-    <img src="Images/killua.JPG" alt="">
-    <img src="Images/digital2.jpg" alt="">
+    
+    <img src="Images/dig1.png" alt="">
+    <img src="Images/about-01.png" alt="">
+    <img src="Images/about-02.png" alt="">
+
+    <img src="Images/about-05.png" alt="">
+    <img src="Images/titi.png" alt="">
   </div>
+
+  <div id="affiche" class="gallery-section">
+    <img src="Images/ghost.png" alt="Ghost" data-title="Ghost in the Shell - 1995 ">
+    <img src="Images/lahaine.png" alt="Haine" data-title="La Haine - 1995 ">
+    <img src="Images/monter.jpg" alt="Monster" data-title="Monster - 2004  ">
+  </div>
+
+  
 
   <script>
     const buttons = document.querySelectorAll('.switch-btn');
@@ -131,21 +232,87 @@
 
     buttons.forEach((btn, index) => {
       btn.addEventListener('click', () => {
-        // Active class sur les boutons
+        // Retirer la classe active de tous les boutons
         buttons.forEach(b => b.classList.remove('active'));
+        // Ajouter la classe active au bouton cliqué
         btn.classList.add('active');
 
-        // Déplacer le slider
-        slider.style.left = index === 0 ? '5px' : '50%';
+        // Déplacer le curseur en fonction du bouton cliqué
+        slider.style.left = `${index * 33.33}%`;
 
-        // Afficher la bonne galerie
+        // Afficher la section correspondante
         sections.forEach(section => {
           section.classList.remove('active');
         });
         document.getElementById(btn.dataset.category).classList.add('active');
       });
     });
-  </script>
+
+
+    // COEUR
+    document.addEventListener("DOMContentLoaded", function () {
+            const heartBtn = document.getElementById("heart-btn");
+            let isLiked = false;
+    
+            heartBtn.addEventListener("click", function () {
+                isLiked = !isLiked;
+                heartBtn.src = isLiked ? "Images/coeur2.png" : "Images/coeur1.png";
+            });
+        });
+
+// LIGHTBOX
+const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const lightboxTitle = document.getElementById("lightbox-title");
+  const closeBtn = document.getElementById("lightbox-close");
+  const prevBtn = document.getElementById("prev");
+  const nextBtn = document.getElementById("next");
+
+  let currentImages = [];
+  let currentIndex = 0;
+
+  const allGalleryImgs = document.querySelectorAll(".gallery-section img");
+
+  allGalleryImgs.forEach((img, index) => {
+    img.addEventListener("click", () => {
+      const parentGallery = img.closest(".gallery-section");
+      currentImages = Array.from(parentGallery.querySelectorAll("img"));
+      currentIndex = currentImages.indexOf(img);
+      openLightbox();
+    });
+  });
+
+  function openLightbox() {
+    const img = currentImages[currentIndex];
+    lightboxImg.src = img.src;
+    lightboxTitle.textContent = img.dataset.title || img.alt || "";
+
+    lightbox.style.display = "flex";
+  }
+
+  function closeLightbox() {
+    lightbox.style.display = "none";
+  }
+
+  function showNext() {
+    currentIndex = (currentIndex + 1) % currentImages.length;
+    openLightbox();
+  }
+
+  function showPrev() {
+    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+    openLightbox();
+  }
+
+  closeBtn.addEventListener("click", closeLightbox);
+  nextBtn.addEventListener("click", showNext);
+  prevBtn.addEventListener("click", showPrev);
+
+  // Option: fermer en cliquant en dehors de l’image
+  lightbox.addEventListener("click", function (e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+</script>
 
 </body>
 </html>

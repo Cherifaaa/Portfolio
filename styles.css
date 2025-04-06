@@ -560,9 +560,10 @@ header{
     font-weight: 400;
     font-size: 1.5rem;
     transition: var(--transition);
+    color: white;
 }
 .speciality_card_info h2:hover{
-    color: var(--prim-color);
+    color: white;
     cursor: pointer;
 }
 .speciality_card_info p{
@@ -578,6 +579,7 @@ header{
     font-family: Brasika;
     opacity: 0.3;
     transition: var(--transition);
+    color: white;
 }
 .speciality_card:hover .speciality_card_info h1{
     opacity: 1;
@@ -1184,7 +1186,15 @@ header{
 
 
 
-
+.gallery-title {
+    text-align: center;
+    font-family: Brasika;
+    font-size: 2.5rem;
+    color: white;
+    margin-top: 0.6px;
+    margin-bottom: 10px;
+  }
+  
 .switch-art {
     display: flex;
     justify-content: center;
@@ -1226,6 +1236,8 @@ header{
     border-radius: 10px;
     object-fit: cover;
   }
+
+
 
 
 /* ANIMATIONS  */

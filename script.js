@@ -84,3 +84,13 @@ let menu = document.querySelector('.menu');
 bar.addEventListener('click', () =>{
     menu.classList.toggle('show_menu');
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const heartBtn = document.getElementById("heart-btn");
+    let isLiked = false;
+
+    heartBtn.addEventListener("click", function () {
+        isLiked = !isLiked;
+        heartBtn.src = isLiked ? "Images/coeur2.png" : "Images/coeur1.png";
+    });
+});
