@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Mes Jeux</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #111;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    .game-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 10%;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .game-section:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .game-info {
+      flex: 1;
+      padding: 10px;
+    }
+
+    .game-title {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .game-desc {
+      font-size: 1em;
+      max-width: 400px;
+      color: #ccc;
+    }
+
+    .video-wrapper {
+      flex: 1;
+      position: relative;
+      cursor: pointer;
+      max-width: 600px;
+    }
+
+    .video-wrapper video {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    /* LIGHTBOX */
+    .video-lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .video-lightbox video {
+      max-width: 90%;
+      max-height: 80%;
+      border: 2px solid #fff;
+      border-radius: 10px;
+    }
+
+    .close-lightbox {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2em;
+      color: white;
+      cursor: pointer;
+    }
+
+    .video-wrapper img.video-thumbnail {
+  width: 70%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.video-wrapper img.video-thumbnail:hover {
+  transform: scale(1.02);
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV BAR (tu peux la copier-coller depuis index si tu veux l'uniformiser) -->
+   
+  <div id="background"></div>
+
+   
+  <!-- NAV  -->
+  <nav>
+      <div class="logo">
+          <img src="Images/logo.png" alt="BotNexus Logo">
+      </div>
+      <ul class="menu">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="galerie.html">Arts</a></li>
+          <li><a href="video.html">Videos</a></li>
+          <li><a href="jeux.html">Jeux</a></li>
+          <li><a href="#">Sites</a></li>
+      </ul>
+      <div class="nav_btns">
+
+          <img id="heart-btn" src="Images/coeur1.png" alt="Like Button">
+      </div>
+      
+      <div class="bars">
+          <i class="ri-menu-2-line"></i>
+      </div>
+  </nav>
+
+  <h1 class="gallery-title">Vidéos</h1>
+
+
+<!-- Jeux 1 -->
+<section class="game-section">
+    <div class="game-info">
+      <h2 class="game-title">La Haine ( 1995 )</h2>
+      <p class="game-desc">Réalisée avec After Effect , Premiere Pro, Capcut 
+        </p>
+    </div>
+    <div class="video-wrapper" data-video="Videos/La Haine~2.mp4">
+      <img src="Images/miniav1.png" alt="Miniature Jeux 1" class="video-thumbnail">
+    </div>
+  </section>
+  
+  <!-- Jeux 2 -->
+  <section class="game-section">
+    <div class="game-info">
+      <h2 class="game-title">Ghost In The Shell ( 1995 ) </h2>
+      <p class="game-desc">Réalisée avec Premiere Pro, Capcut  </p>
+    </div>
+    <div class="video-wrapper" data-video="Videos/Jeux2.mp4">
+      <img src="Images/miniav2.png" alt="Miniature Jeux 2" class="video-thumbnail">
+    </div>
+  </section>
+  
+
+  <!-- LIGHTBOX VIDEO PLAYER -->
+  <div class="video-lightbox" id="video-lightbox">
+    <span class="close-lightbox" id="close-video">&times;</span>
+    <video id="lightbox-video" controls autoplay></video>
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('video-lightbox');
+    const lightboxVideo = document.getElementById('lightbox-video');
+    const closeBtn = document.getElementById('close-video');
+
+    document.querySelectorAll('.video-wrapper').forEach(wrapper => {
+      wrapper.addEventListener('click', () => {
+        const src = wrapper.getAttribute('data-video');
+        lightboxVideo.src = src;
+        lightbox.style.display = 'flex';
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      lightboxVideo.pause();
+      lightbox.style.display = 'none';
+    });
+
+    // Optional: click outside to close
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) {
+        lightboxVideo.pause();
+        lightbox.style.display = 'none';
+      }
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+            const heartBtn = document.getElementById("heart-btn");
+            let isLiked = false;
+    
+            heartBtn.addEventListener("click", function () {
+                isLiked = !isLiked;
+                heartBtn.src = isLiked ? "Images/coeur2.png" : "Images/coeur1.png";
+            });
+        });
+  </script>
+
+</body>
+</html>
