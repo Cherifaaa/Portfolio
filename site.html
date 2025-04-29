@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Mon Site</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Swiper Slider CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #111;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    .section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 10%;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .section:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .section img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 10px;
+    }
+
+    .section .content {
+      flex: 1;
+    }
+
+    .section h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .section p {
+      font-size: 1em;
+      color: #ccc;
+    }
+
+    .cta-button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #ff5f5f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background-color: #ff3a3a;
+    }
+
+    /* Swiper custom */
+    .swiper {
+      width: 500px;
+      height: auto;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION (copiée depuis index) -->
+  <nav>
+    <div class="logo">
+      <img src="Images/logo.png" alt="Logo">
+    </div>
+    <ul class="menu">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="galerie.html">Arts</a></li>
+      <li><a href="video.html">Videos</a></li>
+      <li><a href="jeux.html">Jeux</a></li>
+      <li><a href="site.html">Sites</a></li>
+    </ul>
+    <div class="nav_btns">
+      <img id="heart-btn" src="Images/coeur1.png" alt="Like Button">
+    </div>
+    <div class="bars">
+      <i class="ri-menu-2-line"></i>
+    </div>
+  </nav>
+
+  <h1 class="gallery-title">Sites</h1>
+
+  <!-- SECTION 1 -->
+  <section class="section">
+    <img src="Images/minc.png" alt="Aperçu du site">
+    <div class="content">
+      <h2>Minecraft</h2>
+      <p>Un site web type "Wiki" sur Minecraft ,réalisé en groupe  ,je me suis occupé de la partie ressources et quiz (page d'accueil que je compte redesigner prochainement)  </p>
+      <a href="https://cherifaaa.github.io/minecrafttt/" target="_blank" class="cta-button">Cliquez ici</a>
+    </div>
+  </section>
+
+  <!-- SECTION 2 - slider à droite -->
+  <section class="section">
+    <div class="content">
+      <h2>Game Vault</h2>
+      <p>Une application web permettant de consulter et d’organiser des jeux vidéo issus d'une API Steam. (Réalisé en groupe)<br>
+        L’utilisateur peut se créer un compte , chercher des jeux, créer des listes personnalisées, ajouter des favoris et accéder à une fiche détaillée pour chaque jeu. Le site intègre un système d’authentification avec gestion des accès via des cookies et un middleware. Il propose aussi des fonctionnalités de gestion de profil et de récupération de mot de passe.</p>
+    </div>
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="Images/accueil.png" alt="Screenshot 1"></div>
+        <div class="swiper-slide"><img src="Images/fav.png" alt="Screenshot 2"></div>
+        <div class="swiper-slide"><img src="Images/list.png" alt="Screenshot 3"></div>
+        <div class="swiper-slide"><img src="Images/profile.png" alt="Screenshot 4"></div>
+        <div class="swiper-slide"><img src="Images/theme.png" alt="Screenshot 5"></div>
+        <div class="swiper-slide"><img src="Images/theme2.png" alt="Screenshot 6"></div>
+        <div class="swiper-slide"><img src="Images/desc.png" alt="Screenshot 7"></div>
+        <div class="swiper-slide"><img src="Images/desc2.png" alt="Screenshot 8"></div>
+        
+      </div>
+      <!-- Flèches -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </section>
+
+  <!-- Swiper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper(".mySwiper", {
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      loop: true
+    });
+  </script>
+
+</body>
+</html>
