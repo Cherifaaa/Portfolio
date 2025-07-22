@@ -2,8 +2,13 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Galerie - Arts</title>
   <link rel="stylesheet" href="styles.css">
+    <!-- Remix icon  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.css">
+    <!-- Swiper Slider CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.css">
   <style>
     .switch-container {
       position: relative;
@@ -133,8 +138,105 @@
   cursor: pointer;
 }
 
+/* Responsive Galerie pour mobile */
+@media screen and (max-width: 600px) {
+  /* Pour la galerie active : 2 colonnes */
+  .gallery-section.active {
+    display: grid !important; /* forcer display grid en mobile */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    justify-items: center;
+    padding: 10px 5%;
+  }
 
+  /* Les autres sections doivent rester cachées */
+  .gallery-section:not(.active) {
+    display: none !important;
+  }
 
+  .gallery-section img {
+    width: 100%;
+    border-radius: 8px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .lightbox-nav {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 501px) {
+  .lightbox-nav {
+    display: flex !important; /* ou ce que tu avais avant */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  
+  /* Switch container : réduire largeur et passer en 100% avec padding */
+  .switch-container {
+    width: 100%;
+    max-width: 350px;
+    margin: 20px auto;
+    padding: 5px 10px;
+  }
+
+  /* Boutons du switch : un peu plus petits, taille de police réduite */
+  .switch-btn {
+    font-size: 0.85rem;
+    padding: 8px 10px;
+  }
+
+  /* Galerie : passer en colonne unique */
+  .gallery-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 5%;
+  }
+
+  /* Images : largeur maximale 90% largeur conteneur */
+  .gallery-section img {
+    max-width: 90%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  /* Titre galerie centré et marges */
+  .gallery-title {
+    font-size: 1.8rem;
+    text-align: center;
+    margin: 15px 0 5px;
+  }
+
+  /* Menu (si besoin) */
+  nav ul.menu {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* S’assurer que lightbox image ne dépasse pas l’écran */
+  .lightbox img {
+    max-width: 95vw;
+    max-height: 80vh;
+  }
+
+  /* Lightbox nav boutons plus gros sur petit écran */
+  .lightbox-nav button {
+    font-size: 2.5rem;
+  }
+}
+
+/* Ajout pour swiper slides */
+    .swiper-slide img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      object-fit: cover;
+      max-height: 90vh;
+      user-select: none;
+      pointer-events: none;
+    }
     
   </style>
 </head>
@@ -148,12 +250,10 @@
     <div class="lightbox-title" id="lightbox-title"></div>
   </div>
   
-  
 <body>
-
     <div id="background"></div>
 
-   
+
     <!-- NAV  -->
     <nav>
         <div class="logo">
@@ -175,7 +275,6 @@
             <i class="ri-menu-2-line"></i>
         </div>
     </nav>
-
     <h1 class="gallery-title">Arts</h1>
 
 
@@ -215,18 +314,22 @@
     <img src="Images/about-02.png" alt="">
 
     <img src="Images/about-05.png" alt="">
+        <img src="Images/profilee.png" alt="">
     <img src="Images/titi.png" alt="">
+
   </div>
 
   <div id="affiche" class="gallery-section">
     <img src="Images/ghost.png" alt="Ghost" data-title="Ghost in the Shell - 1995 ">
     <img src="Images/lahaine.png" alt="Haine" data-title="La Haine - 1995 ">
     <img src="Images/monster.png" alt="Monster" data-title="Monster - 2004  ">
+    <img src="Images/ADD.webp" alt="ADD" data-title="Affiche Fête de la Musique ">
   </div>
 
   
 
   <script>
+    
     const buttons = document.querySelectorAll('.switch-btn');
     const slider = document.getElementById('slider');
     const sections = document.querySelectorAll('.gallery-section');
@@ -263,57 +366,105 @@
 
 // LIGHTBOX
 const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightbox-img");
-  const lightboxTitle = document.getElementById("lightbox-title");
-  const closeBtn = document.getElementById("lightbox-close");
-  const prevBtn = document.getElementById("prev");
-  const nextBtn = document.getElementById("next");
+const lightboxImg = document.getElementById("lightbox-img");
+const lightboxTitle = document.getElementById("lightbox-title");
+const closeBtn = document.getElementById("lightbox-close");
+const prevBtn = document.getElementById("prev");
+const nextBtn = document.getElementById("next");
 
-  let currentImages = [];
-  let currentIndex = 0;
+let currentImages = [];
+let currentIndex = 0;
 
-  const allGalleryImgs = document.querySelectorAll(".gallery-section img");
+const allGalleryImgs = document.querySelectorAll(".gallery-section img");
 
-  allGalleryImgs.forEach((img, index) => {
-    img.addEventListener("click", () => {
-      const parentGallery = img.closest(".gallery-section");
-      currentImages = Array.from(parentGallery.querySelectorAll("img"));
-      currentIndex = currentImages.indexOf(img);
-      openLightbox();
-    });
+allGalleryImgs.forEach((img) => {
+  img.addEventListener("click", () => {
+    const parentGallery = img.closest(".gallery-section");
+    currentImages = Array.from(parentGallery.querySelectorAll("img"));
+    currentIndex = currentImages.indexOf(img);
+    openLightbox();
   });
+});
 
-  function openLightbox() {
-    const img = currentImages[currentIndex];
-    lightboxImg.src = img.src;
-    lightboxTitle.textContent = img.dataset.title || img.alt || "";
+function openLightbox() {
+  const img = currentImages[currentIndex];
+  lightboxImg.src = img.src;
+  lightboxTitle.textContent = img.dataset.title || img.alt || "";
+  lightbox.style.display = "flex";
+}
 
-    lightbox.style.display = "flex";
+function closeLightbox() {
+  lightbox.style.display = "none";
+}
+
+function showNext() {
+  currentIndex = (currentIndex + 1) % currentImages.length;
+  openLightbox();
+}
+
+function showPrev() {
+  currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+  openLightbox();
+}
+
+closeBtn.addEventListener("click", closeLightbox);
+
+// ** Garde ces deux événements pour que les flèches fonctionnent **
+prevBtn.addEventListener("click", showPrev);
+nextBtn.addEventListener("click", showNext);
+
+// Gestion du swipe tactile et souris sur l’image lightbox
+let touchStartX = 0;
+let touchEndX = 0;
+
+lightboxImg.addEventListener("touchstart", (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+lightboxImg.addEventListener("touchend", (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+});
+
+lightboxImg.addEventListener("mousedown", (e) => {
+  touchStartX = e.screenX;
+});
+
+lightboxImg.addEventListener("mouseup", (e) => {
+  touchEndX = e.screenX;
+  handleSwipe();
+});
+
+function handleSwipe() {
+  const swipeDistance = touchEndX - touchStartX;
+  const threshold = 50; // distance minimale pour valider swipe
+  if (swipeDistance > threshold) {
+    showPrev();
+  } else if (swipeDistance < -threshold) {
+    showNext();
   }
+}
 
-  function closeLightbox() {
-    lightbox.style.display = "none";
-  }
-
-  function showNext() {
-    currentIndex = (currentIndex + 1) % currentImages.length;
-    openLightbox();
-  }
-
-  function showPrev() {
-    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
-    openLightbox();
-  }
-
-  closeBtn.addEventListener("click", closeLightbox);
-  nextBtn.addEventListener("click", showNext);
-  prevBtn.addEventListener("click", showPrev);
 
   // Option: fermer en cliquant en dehors de l’image
   lightbox.addEventListener("click", function (e) {
     if (e.target === lightbox) closeLightbox();
   });
+  
 </script>
+<script>
+  let bar = document.querySelector('.bars');
+  let menu = document.querySelector('.menu');
+
+  if(bar && menu){
+    bar.addEventListener('click', () => {
+      menu.classList.toggle('show_menu');
+    });
+  }
+</script>
+
+<script src="script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
 
 </body>
 </html>
