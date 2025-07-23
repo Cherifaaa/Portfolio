@@ -2,8 +2,14 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mes Jeux</title>
   <link rel="stylesheet" href="styles.css">
+    <!-- Remix icon  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.css">
+    <!-- Swiper Slider CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.css">
+
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -12,19 +18,27 @@
       margin: 0;
       padding: 0;
     }
+.game-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 10%;
+  gap: 40px;
+  flex-wrap: nowrap;
+}
 
-    .game-section {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 60px 10%;
-      flex-wrap: wrap;
-      gap: 40px;
-    }
+.game-section.video-left {
+  flex-direction: row; /* vidéo à gauche, texte à droite */
+}
 
-    .game-section:nth-child(even) {
-      flex-direction: row-reverse;
-    }
+.game-section.video-right {
+  flex-direction: row-reverse; /* vidéo à droite, texte à gauche */
+}
+
+
+.menu.show_menu {
+  display: flex !important;
+}
 
     .game-info {
       flex: 1;
@@ -93,6 +107,74 @@
 .video-wrapper img.video-thumbnail:hover {
   transform: scale(1.02);
 }
+/* MENU BURGER RESPONSIVE */
+@media screen and (max-width: 900px) {
+-index: 999;
+  }
+
+  nav .menu.show_menu {
+    display: flex;
+  }
+
+
+}
+
+/* Par défaut, cacher le menu burger sur PC */
+.bars {
+  display: none;
+}
+
+
+
+/* -------------------------- */
+/* AMÉLIORATIONS MOBILE       */
+/* -------------------------- */
+/* Mobile : on conserve la même logique */
+@media screen and (max-width: 600px) {
+  .game-section {
+padding: 30px 6%;
+    gap: 20px;
+    flex-wrap: nowrap;
+  }
+  .game-section.video-left {
+    flex-direction: row !important;
+  }
+  .game-section.video-right {
+    flex-direction: row-reverse !important;
+  }
+
+  .video-wrapper img.video-thumbnail {
+width: 101%;
+    max-width: 300px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .video-lightbox video {
+    max-width: 100%;
+    max-height: 70vh;
+  }
+
+  .game-title {
+    font-size: 1.4em;
+    text-align: left;
+    margin-bottom: 9px;
+  }
+
+    .game-info {
+      flex: 1;
+      padding: 4px;
+    }
+
+  .game-desc {
+   font-size: 14px;
+    text-align: left;
+  }
+}
+
+
+
 
   </style>
 </head>
@@ -104,64 +186,65 @@
 
    
   <!-- NAV  -->
-  <nav>
-      <div class="logo">
-          <img src="Images/logo.png" alt="BotNexus Logo">
-      </div>
-      <ul class="menu">
-          <li><a href="index.html">Accueil</a></li>
-          <li><a href="galerie.html">Arts</a></li>
-          <li><a href="video.html">Videos</a></li>
-          <li><a href="jeux.html">Jeux</a></li>
-          <li><a href="site.html">Sites</a></li>
-      </ul>
-      <div class="nav_btns">
-
-          <img id="heart-btn" src="Images/coeur1.png" alt="Like Button">
-      </div>
-      
-      <div class="bars">
-          <i class="ri-menu-2-line"></i>
-      </div>
+    <nav>
+        <div class="logo">
+            <img src="Images/logo.png" alt="BotNexus Logo">
+        </div>
+        <ul class="menu">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="galerie.html">Arts</a></li>
+            <li><a href="video.html">Videos</a></li>
+            <li><a href="jeux.html">Jeux</a></li>
+            <li><a href="site.html">Sites</a></li>
+        </ul>
+        <div class="nav_btns">
+  
+            <img id="heart-btn" src="Images/coeur1.png" alt="Like Button">
+        </div>
+        
+        <div class="bars">
+            <i class="ri-menu-2-line"></i>
+        </div>
   </nav>
 
   <h1 class="gallery-title">Videos</h1>
 
 
 
-<!-- video 3 -->
-  <section class="game-section">
-    <div class="game-info">
-      <h2 class="game-title">Fight Club ( 1999 ) </h2>
-      <p class="game-desc">Réalisée avec After Effect , Premiere Pro, Capcut  </p>
-    </div>
-    <div class="video-wrapper" data-video="Videos/Fight-Club-edit_2_.webm">
-      <img src="Images/miniav3.png" alt="Miniature Jeux 2" class="video-thumbnail">
-    </div>
-  </section>
-<!-- video 2 -->
-<section class="game-section">
-    <div class="game-info">
-      <h2 class="game-title">La Haine ( 1995 )</h2>
-      <p class="game-desc">Réalisée avec After Effect , Premiere Pro, Capcut 
-        </p>
-    </div>
-    <div class="video-wrapper" data-video="Videos/La Haine~2.mp4">
-      <img src="Images/miniav1.png" alt="Miniature Jeux 1" class="video-thumbnail">
-    </div>
-  </section>
-  
-<!-- video 1 -->
-  <section class="game-section">
-    <div class="game-info">
-      <h2 class="game-title">Ghost In The Shell ( 1995 ) </h2>
-      <p class="game-desc">Réalisée avec Premiere Pro, Capcut  </p>
-    </div>
-    <div class="video-wrapper" data-video="Videos/GHOST(2).mp4">
-      <img src="Images/miniav2.png" alt="Miniature Jeux 2" class="video-thumbnail">
-    </div>
-  </section>
-  
+<!-- video 3 - Fight Club (vidéo à gauche) -->
+<section class="game-section video-right">
+  <div class="game-info">
+    <h2 class="game-title">Fight Club (1999) </h2>
+    <p class="game-desc">Réalisée avec After Effect , Premiere Pro, Capcut  </p>
+  </div>
+  <div class="video-wrapper" data-video="Videos/Fight-Club-edit_2_.webm">
+    <img src="Images/miniav3.png" alt="Miniature Jeux 2" class="video-thumbnail">
+  </div>
+</section>
+
+<!-- video 2 - La Haine (vidéo à droite) -->
+<section class="game-section video-left">
+  <div class="game-info">
+    <h2 class="game-title">La Haine (1995)</h2>
+    <p class="game-desc">Réalisée avec After Effect , Premiere Pro, Capcut 
+      </p>
+  </div>
+  <div class="video-wrapper" data-video="Videos/La Haine~2.mp4">
+    <img src="Images/miniav1.png" alt="Miniature Jeux 1" class="video-thumbnail">
+  </div>
+</section>
+
+<!-- video 1 - Ghost In The Shell (vidéo à gauche) -->
+<section class="game-section video-right">
+  <div class="game-info">
+    <h2 class="game-title">Ghost In The Shell (1995) </h2>
+    <p class="game-desc">Réalisée avec Premiere Pro, Capcut  </p>
+  </div>
+  <div class="video-wrapper" data-video="Videos/GHOST(2).mp4">
+    <img src="Images/miniav2.png" alt="Miniature Jeux 2" class="video-thumbnail">
+  </div>
+</section>
+
 
   <!-- LIGHTBOX VIDEO PLAYER -->
   <div class="video-lightbox" id="video-lightbox">
@@ -170,6 +253,13 @@
   </div>
 
   <script>
+const bar = document.querySelector('.bars');
+const menu = document.querySelector('.menu');
+
+bar.addEventListener('click', () => {
+  menu.classList.toggle('show_menu');
+});
+
     const lightbox = document.getElementById('video-lightbox');
     const lightboxVideo = document.getElementById('lightbox-video');
     const closeBtn = document.getElementById('close-video');
@@ -203,7 +293,9 @@
                 heartBtn.src = isLiked ? "Images/coeur2.png" : "Images/coeur1.png";
             });
         });
+
   </script>
+
 
 </body>
 </html>
