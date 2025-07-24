@@ -2,10 +2,13 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mon Site</title>
   <link rel="stylesheet" href="styles.css">
-  <!-- Swiper Slider CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css">
+    <!-- Remix icon  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.css">
+    <!-- Swiper Slider CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.css">
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -52,8 +55,8 @@
       display: inline-block;
       margin-top: 20px;
       padding: 10px 20px;
-      background-color: #ff5f5f;
-      color: white;
+      background-color: #fff;
+      color: #1c0000;
       border: none;
       border-radius: 5px;
       text-decoration: none;
@@ -61,7 +64,9 @@
     }
 
     .cta-button:hover {
-      background-color: #ff3a3a;
+      background-color: #1c0000;
+
+  color: #fff;
     }
 
     /* Swiper custom */
@@ -82,6 +87,163 @@
     .swiper-button-prev {
       color: #fff;
     }
+    @media (max-width: 900px) {
+  /* Menu burger identique à galerie.html / jeux.html */
+  .bars {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-color);
+    background-size: 200% 200%;
+    cursor: pointer;
+  }
+
+  nav {
+    position: relative;
+  }
+
+  .menu {
+    position: absolute;
+    top: 100%;
+    left: -100%;
+    opacity: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1% 12%;
+    width: 100%;
+    border: 1px solid var(--light-border);
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    z-index: 999;
+    transition: var(--transition2);
+  }
+
+  .menu li {
+    padding: 10px 0;
+  }
+
+  .show_menu {
+    left: 0;
+    opacity: 1;
+  }
+
+  .nav_btns i {
+    display: none;
+  }
+
+  /* SECTION en colonne, avec contenu centré */
+  .section {
+    flex-direction: column !important;
+    padding: 30px 5%;
+    align-items: center;
+    gap: 20px;
+  }
+
+  /* Image et swiper à 100% largeur max */
+  .section img,
+  .swiper {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 10px;
+  }
+
+  /* Contenu sous l’image / slider */
+  .section .content {
+    display: contents;
+  }
+
+  /* Titre plus petit */
+  .section h2 {
+    font-size: 1.6em;
+  }
+
+.section > .content > h2 {
+    order: 1;
+    width: 100%;
+    text-align: center;
+    font-size: 1.6em;
+    margin-bottom: 10px;
+  }
+
+  /* L'image en 2e */
+  .section > img {
+    order: 2;
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 10px;
+  }
+
+  /* Le reste du contenu (p + a) en 3e */
+  /* On peut regrouper p et a dans un wrapper virtuel */
+  /* Comme display: contents, ils sont directs enfants de .section */
+
+  .section > .content > p,
+  .section > .content > a {
+    order: 3;
+  font-size: 15px;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .cta-button {
+    margin: 15px auto 0;
+    display: inline-block;
+  }
+  .section {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Forcer l’ordre sur mobile */
+.section .content h2 {
+    order: -1;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+margin-top: 25px;
+}
+
+.section .swiper {
+  order: 0; /* ensuite la vidéo/image/slider */
+}
+
+.section .content p,
+.section .content a {
+  order: 1;
+  text-align: center;
+}
+
+}
+
+@media (max-width: 900px) {
+  #gamevault {
+    flex-direction: column !important;
+  }
+
+  #gamevault .content h2 {
+    order: -1;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  #gamevault .swiper {
+    order: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #gamevault .content p,
+  #gamevault .content a {
+    order: 1;
+    text-align: center;
+    margin-top: 10px;
+  }
+}
+
+
+
   </style>
 </head>
 <body>
@@ -114,12 +276,13 @@
     <div class="content">
       <h2>Minecraft</h2>
       <p>Un site web type "Wiki" sur Minecraft ,réalisé en groupe  ,je me suis occupé de la partie ressources et quiz (page d'accueil que je compte redesigner prochainement)  </p>
-      <a href="https://cherifaaa.github.io/minecrafttt/" target="_blank" class="cta-button">Cliquez ici</a>
+      <a href="https://cherifaaa.github.io/minecrafttt/" target="_blank" class="cta-button">Cliquez ici (Version PC)</a>
     </div>
   </section>
 
   <!-- SECTION 2 - slider à droite -->
-  <section class="section">
+  <section class="section" id="gamevault">
+
     <div class="content">
       <h2>Game Vault</h2>
       <p>Une application web permettant de consulter et d’organiser des jeux vidéo issus d'une API Steam. (Réalisé en groupe)<br>
@@ -153,6 +316,13 @@
       },
       loop: true
     });
+    const bar = document.querySelector('.bars');
+const menu = document.querySelector('.menu');
+
+bar.addEventListener('click', () => {
+  menu.classList.toggle('show_menu');
+});
+
   </script>
 
 </body>

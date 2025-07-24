@@ -2,8 +2,14 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mes Jeux</title>
   <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Remix icon  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.css">
+    <!-- Swiper Slider CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.css">
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -94,6 +100,114 @@
   transform: scale(1.02);
 }
 
+@media (max-width: 900px) {
+  .game-section {
+    flex-direction: column !important;
+    align-items: center;
+    padding: 30px 5%;
+  }
+
+  .game-info {
+    order: 2; /* Description APRES la vidéo */
+    width: 100%;
+    text-align: center;
+  }
+
+  .video-wrapper {
+    order: 1; /* Vidéo AVANT */
+    width: 100%;
+max-width: 90%;
+margin-top: 40px;
+  }
+
+  .game-title {
+    font-size: 1.6em;
+margin-bottom: 9px;
+  }
+  
+
+  .game-desc {
+    font-size: 0.85em;
+    max-width: 90%;
+    margin: 10px auto 0;
+  }
+  
+
+  /* Menu burger mobile */
+  .bars {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-color);
+    background-size: 200% 200%;
+  }
+
+  nav {
+    position: relative;
+  }
+
+  .menu {
+    position: absolute;
+    top: 100%;
+    left: -100%;
+    opacity: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1% 12%;
+    width: 100%;
+    border: 1px solid var(--light-border);
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    z-index: 999;
+    transition: var(--transition2);
+  }
+
+  .menu li {
+    padding: 10px 0;
+  }
+
+  .nav_btns i {
+    display: none;
+  }
+
+  .show_menu {
+    left: 0;
+    opacity: 1;
+  }
+  }
+
+
+
+
+
+
+.github-btn {
+  display: inline-block;
+  margin-top: 5px;
+  padding: 4px 10px;
+  background-color: #fff;
+  color: #1c0000;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 13px;
+  transition: background-color 0.3s;
+}
+
+.github-btn:hover {
+  background-color: #1c0000;
+
+  color: #fff;
+
+}
+
+
+
+
+
+
+
   </style>
 </head>
 <body>
@@ -146,9 +260,15 @@
   <section class="game-section">
     <div class="game-info">
       <h2 class="game-title">Bataille Navale</h2>
-      <p class="game-desc">Un jeux classique de bataille navale codé c# , à l'aide d'un serveur qui accepte des connexions entrante de clients pairs qui seront adversaires lors d'une partie. <br>
-        Réalisé en duo .<br>
-        Code Source : https://github.com/TitiLeGrand/SAE_BatailleNaval_S2.git </p>
+     <p class="game-desc">
+  Un jeu classique de bataille navale codé en C#, avec un serveur acceptant des connexions clientes (adversaires).
+  <br>Réalisé en duo.<br>
+  Code source :
+  <a href="https://github.com/TitiLeGrand/SAE_BatailleNaval_S2.git" target="_blank" class="github-btn">
+    Voir sur GitHub
+  </a>
+</p>
+
     </div>
     <div class="video-wrapper" data-video="Videos/Jeux2.mp4">
       <img src="Images/minia2.png" alt="Miniature Jeux 2" class="video-thumbnail">
@@ -197,6 +317,14 @@
             });
         });
   </script>
+<script>
+  const bar = document.querySelector('.bars');
+  const menu = document.querySelector('.menu');
+
+  bar.addEventListener('click', () => {
+    menu.classList.toggle('show_menu');
+  });
+</script>
 
 </body>
 </html>
