@@ -1555,93 +1555,158 @@ header{
     }
 }
 @media (max-width:500px) {
+  .nav_btns {
+    display: none !important;
+  }
     body {
         background: url('Images/fond6.png') no-repeat top center;
         background-size: 100% auto;
     }
-    .nav_btns{
-        display: none;
-    }
-    .hero_content p{
-        width: 100%;
-    }
-    .img_box{
-        left: 40%;
-        top: -5%;
-    }
-    .img_box2{
-        top: 80%;
-        left: -7%;
-    }
-    .hero_img{
-        width: 100%;
-    }
-    .hero_img:after{
-        transform: translate(-50%, -50%) rotate(14deg);
-    }
-    .hero_img:before{
-        transform: translate(-50%, -50%) rotate(-14deg);
-    }
-    .Headings h1{
-        font-size: 2rem;
-        line-height: 2.5rem;
-    }
+      .hero_img {
+    width: 91%;
+  }
+  .hero_img2 img {
+  width: 100%;
+  border-radius: 52px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero_img:after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-10deg);
+    width: 100%;
+    height: 100%;
+    border-radius: 52px;
+    background-color: rgba(255,255,255,0.1);
+    z-index: 1;
+}
+.hero_img:before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-25deg);
+    width: 100%;
+    height: 100%;
+    border-radius: 52px;
+    background-color: rgba(255,255,255,0.1);
+    z-index: 0;
+}
+ .img_box {
+    left: 72%;
+  }
+   .img_box2 {
+    left: -15.5%;
+  }
+   .img_box img {
+width: 88px;
+    height: 83px;
+  z-index: 5;
+}
+.img_box2 img {
+width: 112px;
+    height: 112px;
+  z-index: 5;
+  left: 4%;
+}
     .about_imgs{
-        width: 100%;
+        width: 80%;
     }
     .about_imgs img{
-        border-radius: 20px;
+width: 100%;
+    border-radius: 42px;
     }
-    .about_img_shape{
-        display: none;
+    .about_img_shape1{
+top: 62%;
+    width: 88px;
+    height: 88px;
+    left: 4%;
     }
-    .speciality_cards{
-        grid-template-columns: repeat(1,1fr);
+    .about_img_shape2{
+     top: 93%;
+    width: 111px;
+    height: 110px;
+    left: 6%;
     }
-    .speciality .Headings,
-    .speciality .Headings p,
-    .portfolio .Headings,
-    .collection .Headings,
-    .road_map .Headings,
-    .team .Headings,
-    .testimonial .Headings{
-        width: 100%;
+    .about_img_shape3{
+  top: 102%;
+    left: 29%;
+    width: 57px;
+    height: 56px;
     }
-    .speciality .Headings h1{
-        font-size: 1.5rem;
-        line-height: 2rem;
+    .about_img_shape4{
+width: 130px;
+    height: 130px;
+    top: 92%;
+    left: 55%;
     }
-    .portfolio_box{
-        flex-direction: column;
-    }
-    .portfolio_box span{
-        top: -11%;
-    }
-    .collection_box_info h2{
-        font-size: 2.5rem;
-    }
-    .testimonial_box p{
-        font-size: 0.9rem;
-        font-weight: 300;
-    }
-    .banner_img{
-        display: none;
-    }
-    .newsletter_content h2{
-        font-size: 2rem;
-    }
-    .newsletter_content input{
-        width: 100%;
-    }
-    .footer_head{
-        flex-direction: column;
-        gap: 10px;
-    }
-    .footer_menu{
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    
+}
+@media (max-width: 500px) {
+  /* 1 - header en flex colonne */
+  header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 2 - hero_content en flex colonne aussi pour gérer ordre des enfants */
+  .hero_content {
+    display: flex;
+    flex-direction: column;
+    order: 1; /* positionne hero_content en premier dans header */
+  }
+
+  /* 3 - hero_img en second dans header */
+  .hero_img {
+    order: 2;
+    margin: 4rem 0;
+  }
+
+  /* 4 - hero_shape en dernier */
+  .hero_shape {
+    order: 3;
+  }
+
+  /* 5 - ordre des enfants dans hero_content */
+  .hero_content h1 {
+    order: 1; /* titre Mon Portfolio */
+  }
+
+  .hero_content p {
+    order: 3; /* description "salut..." */
+  }
+
+  .brandSwiper {
+    order: 4; /* slider en dernier */
+    margin-top: 1rem; /* espace au-dessus */
+  }
+}
+@media (max-width: 500px) {
+  .brandSwiper {
+    width: 100%;
+    overflow: hidden;
+    padding: 0 10px;
+  }
+
+  .brandSwiper .swiper-wrapper {
+    display: flex;
+  }
+
+  .brandSwiper .swiper-slide {
+    width: 22% !important;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .brandSwiper .swiper-slide img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
 }

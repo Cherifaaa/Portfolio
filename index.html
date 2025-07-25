@@ -178,7 +178,30 @@
             });
         });
     </script>
-    
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.innerWidth > 500) return; // STOP si PC
+
+  const header = document.querySelector('header');
+  const heroContent = document.querySelector('.hero_content');
+  const heroImg = document.querySelector('.hero_img');
+  const brandSwiper = heroContent.querySelector('.brandSwiper');
+  const heroDescription = heroContent.querySelector('p');
+  const heroTitle = heroContent.querySelector('h1');
+
+  if (!heroContent || !heroImg || !brandSwiper || !heroTitle || !heroDescription) return;
+
+  // On vide hero_content pour réordonner
+  heroContent.innerHTML = '';
+
+  // Ordre voulu :
+  heroContent.appendChild(heroTitle);        // 1. Titre
+  heroContent.appendChild(heroImg);          // 2. Image hero (on déplace dans hero_content)
+  heroContent.appendChild(heroDescription);  // 3. Description
+  heroContent.appendChild(brandSwiper);      // 4. Slider
+});
+</script>
+
 
 </body>
 
