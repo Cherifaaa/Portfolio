@@ -1551,7 +1551,10 @@ header{
 @media (max-width:690px) {
     body {
         background: url('Images/fond5.png') no-repeat top center;
-        background-size: 100% auto;
+        background-size: cover;
+background-position: top center;
+background-repeat: no-repeat;
+
     }
 }
 @media (max-width:500px) {
@@ -1560,7 +1563,10 @@ header{
   }
     body {
         background: url('Images/fond6.png') no-repeat top center;
-        background-size: 100% auto;
+       background-size: cover;
+background-position: top center;
+background-repeat: no-repeat;
+
     }
       .hero_img {
     width: 91%;
@@ -1709,4 +1715,41 @@ width: 130px;
     object-fit: contain;
     display: block;
   }
+  .img_box,
+.img_box2 {
+  max-width: 100%;
+  overflow: hidden;
+}
+@media (max-width: 500px) {
+  body {
+    background: url('Images/fond6.png') no-repeat top center;
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+  }
+
+  .img_box,
+  .img_box2 {
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .brandSwiper {
+    overflow-x: auto;
+  }
+
+  .brandSwiper .swiper-slide {
+    width: auto !important;
+    flex: 0 0 auto;
+    max-width: 90px;
+  }
+}
+
+}
+html, body {
+  overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
 }
