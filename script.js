@@ -86,11 +86,36 @@ bar.addEventListener('click', () =>{
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    const heartBtn = document.getElementById("heart-btn");
-    let isLiked = false;
+        // COEUR
+        const heartBtn = document.getElementById("heart-btn");
+        let isLiked = false;
+        if(heartBtn){
+            heartBtn.addEventListener("click", function () {
+                    isLiked = !isLiked;
+                    heartBtn.src = isLiked ? "Images/coeur2.png" : "Images/coeur1.png";
+            });
+        }
 
-    heartBtn.addEventListener("click", function () {
-        isLiked = !isLiked;
-        heartBtn.src = isLiked ? "Images/coeur2.png" : "Images/coeur1.png";
-    });
+        // --- Cartes dossier galerie ---
+        const cartesFolder = document.getElementById("cartes-folder");
+        const cartesGallery = document.getElementById("cartes-gallery");
+        const digitalSection = document.getElementById("digital");
+        const cartesBack = document.getElementById("cartes-back");
+        if(cartesFolder && cartesGallery && digitalSection && cartesBack){
+            cartesFolder.addEventListener("click", function(){
+                // Cache tout sauf la galerie cartes
+                Array.from(digitalSection.children).forEach(child => {
+                    if(child !== cartesGallery) child.style.display = "none";
+                });
+                cartesGallery.style.display = "flex";
+            });
+            cartesBack.addEventListener("click", function(e){
+                e.stopPropagation();
+                // Réaffiche tout sauf la galerie cartes
+                Array.from(digitalSection.children).forEach(child => {
+                    if(child !== cartesGallery) child.style.display = "";
+                });
+                cartesGallery.style.display = "none";
+            });
+        }
 });
