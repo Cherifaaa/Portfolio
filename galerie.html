@@ -59,13 +59,20 @@
             left: 0; top: 0; z-index: 3;
           }
         
+        #cartes-gallery {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
+          justify-items: center;
+          align-items: flex-start;
+          padding: 30px 0 0 0;
+        }
         #cartes-gallery .gallery-carte {
-          max-width: 250px;
-          max-height: 350px;
           width: 100%;
+          max-width: 250px;
           height: auto;
           border-radius: 10px;
-          object-fit: contain;
+          object-fit: cover;
           background: none !important;
           transition: transform 0.3s ease, box-shadow 0.3s ease;
           margin-bottom: 0;
@@ -177,7 +184,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  z-index: 999;
+  z-index: 3000;
 }
 
 .lightbox img {
@@ -231,9 +238,12 @@
 
 /* Responsive Galerie pour mobile */
 @media screen and (max-width: 600px) {
+  #cartes-gallery .gallery-carte {
+    max-width: 140px !important;
+    width: 100% !important;
+  }
   /* Pour la galerie active : 2 colonnes */
-  .gallery-section.active,
-  #cartes-gallery {
+  .gallery-section.active {
     display: grid !important; /* forcer display grid en mobile */
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
@@ -246,12 +256,30 @@
     display: none !important;
   }
 
+  /* Images de toutes les galeries, y compris digital et cartes */
   .gallery-section img,
   #cartes-gallery .gallery-carte {
     width: 100%;
     max-width: 100%;
     border-radius: 8px;
     height: auto;
+    object-fit: cover;
+    margin: 0;
+    box-shadow: none;
+    background: none;
+  }
+
+  /* Dossier cartes (empilement) version mobile : centré, plus petit */
+  .cartes-folder, .cartes-folder-stack {
+    width: 110px !important;
+    height: 150px !important;
+    margin: 0 auto 18px auto !important;
+    align-self: center !important;
+  }
+  .cartes-folder-stack img {
+    width: 110px !important;
+    height: 150px !important;
+    border-radius: 8px !important;
   }
 }
 @media screen and (max-width: 600px) {
@@ -329,7 +357,22 @@
       pointer-events: none;
     }
     
-  </style>
+    .cartes-gallery-overlay {
+      display: none;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      align-items: flex-start;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15,15,15,0.97);
+      z-index: 2000;
+      overflow-y: auto;
+    }
+    </style>
 </head>
 <div class="lightbox" id="lightbox">
     <span class="lightbox-close" id="lightbox-close">&times;</span>
@@ -398,28 +441,28 @@
 
   </div>
 
-  <div id="digital" class="gallery-section">
-    
-    
-    <!-- Images digitales normales -->
-    <img src="Images/dig1.png" alt="">
-    <img src="Images/about-01.png" alt="">
-    <img src="Images/about-02.png" alt="">
-    <img src="Images/about-05.png" alt="">
-    <img src="Images/profilee.png" alt="">
-    <img src="Images/titi.png" alt="">
-    <img src="Images/max.png" alt="">
-
-    <div id="cartes-folder" class="cartes-folder">
-      <div class="cartes-folder-stack">
-        <img src="Images/cartes/c12.png" alt="Carte 1">
-        <img src="Images/cartes/c14.png" alt="Carte 2">
-        <img src="Images/cartes/c43.png" alt="Carte 3">
+    <div id="digital" class="gallery-section">
+      <!-- Images digitales normales -->
+      <img src="Images/dig1.png" alt="">
+      <img src="Images/about-01.png" alt="">
+      <img src="Images/about-02.png" alt="">
+      <img src="Images/about-05.png" alt="">
+      <img src="Images/profilee.png" alt="">
+      <img src="Images/titi.png" alt="">
+      <img src="Images/max.png" alt="">
+      <div id="cartes-folder" class="cartes-folder">
+        <div class="cartes-folder-stack">
+          <img src="Images/cartes/c12.png" alt="Carte 1">
+          <img src="Images/cartes/c14.png" alt="Carte 2">
+          <img src="Images/cartes/c43.png" alt="Carte 3">
+        </div>
       </div>
     </div>
-    <div id="cartes-gallery" class="gallery-section" style="display: none; flex-wrap: wrap; gap: 20px; justify-content: center; align-items: flex-start;">
-      <button id="cartes-back" style="position: absolute; left: 20px; top: 20px; z-index: 10; background: #222; color: #fff; border: none; border-radius: 6px; padding: 8px 18px; font-size: 1rem; cursor: pointer; box-shadow: 0 2px 8px #0005;">Retour</button>
+    <!-- Cartes gallery overlay, outside main gallery sections -->
+    <div id="cartes-gallery" class="cartes-gallery-overlay">
+      <button id="cartes-back" style="position: fixed; left: 20px; top: 20px; z-index: 3500; background: #222; color: #fff; border: none; border-radius: 6px; padding: 8px 18px; font-size: 1rem; cursor: pointer; box-shadow: 0 2px 8px #0005;">Retour</button>
       <!-- Cartes images (même style que galerie) -->
+      <img src="Images/cartes/back.png" alt="Carte 1" data-title="Carte 1" class="gallery-carte">
       <img src="Images/cartes/c1.png" alt="Carte 1" data-title="Carte 1" class="gallery-carte">
       <img src="Images/cartes/c2.png" alt="Carte 2" data-title="Carte 2" class="gallery-carte">
       <img src="Images/cartes/c3.png" alt="Carte 3" data-title="Carte 3" class="gallery-carte">
@@ -465,9 +508,7 @@
       <img src="Images/cartes/c43.png" alt="Carte 43" data-title="Carte 43" class="gallery-carte">
       <img src="Images/cartes/c44.png" alt="Carte 44" data-title="Carte 44" class="gallery-carte">
       <img src="Images/cartes/c45.png" alt="Carte 45" data-title="Carte 45" class="gallery-carte">
-
     </div>
-  </div>
 
   <div id="affiche" class="gallery-section">
     <img src="Images/ghost.png" alt="Ghost" data-title="Ghost in the Shell - 1995 ">
@@ -502,6 +543,15 @@
       });
     });
 
+    // Activer la section Digital si hash #digital
+    if (window.location.hash === '#digital') {
+      buttons.forEach(b => b.classList.remove('active'));
+      sections.forEach(section => section.classList.remove('active'));
+      document.querySelector('.switch-btn[data-category="digital"]').classList.add('active');
+      document.getElementById('digital').classList.add('active');
+      slider.style.left = '33.33%';
+    }
+
 
 
     // COEUR
@@ -517,23 +567,20 @@
     // --- Cartes dossier galerie ---
     const cartesFolder = document.getElementById("cartes-folder");
     const cartesGallery = document.getElementById("cartes-gallery");
-    const digitalSection = document.getElementById("digital");
     const cartesBack = document.getElementById("cartes-back");
-    if(cartesFolder && cartesGallery && digitalSection && cartesBack){
+    // Always hide cartes-gallery on page load
+    document.addEventListener("DOMContentLoaded", function() {
+      if(cartesGallery) cartesGallery.style.display = "none";
+    });
+    if(cartesFolder && cartesGallery && cartesBack){
       cartesFolder.addEventListener("click", function(){
-        // Cache tout sauf la galerie cartes
-        Array.from(digitalSection.children).forEach(child => {
-          if(child !== cartesGallery) child.style.display = "none";
-        });
         cartesGallery.style.display = "flex";
+        document.body.style.overflow = "hidden";
       });
       cartesBack.addEventListener("click", function(e){
         e.stopPropagation();
-        // Réaffiche tout sauf la galerie cartes
-        Array.from(digitalSection.children).forEach(child => {
-          if(child !== cartesGallery) child.style.display = "";
-        });
         cartesGallery.style.display = "none";
+        document.body.style.overflow = "";
       });
     }
 
@@ -548,16 +595,42 @@ const nextBtn = document.getElementById("next");
 let currentImages = [];
 let currentIndex = 0;
 
-const allGalleryImgs = document.querySelectorAll(".gallery-section img");
-
-allGalleryImgs.forEach((img) => {
-  img.addEventListener("click", () => {
-    const parentGallery = img.closest(".gallery-section");
-    currentImages = Array.from(parentGallery.querySelectorAll("img"));
-    currentIndex = currentImages.indexOf(img);
-    openLightbox();
+// Attach lightbox click to all gallery images (sections)
+function setupLightboxListeners() {
+  const allGalleryImgs = document.querySelectorAll(".gallery-section img");
+  allGalleryImgs.forEach((img) => {
+    img.onclick = function() {
+      let parentGallery = img.closest(".gallery-section");
+      currentImages = Array.from(parentGallery.querySelectorAll("img"));
+      currentIndex = currentImages.indexOf(img);
+      openLightbox();
+    };
   });
+}
+setupLightboxListeners();
+
+// Event delegation for cartes-gallery overlay (cards) -- robust version
+document.addEventListener("click", function(e) {
+  const card = e.target.closest('.gallery-carte');
+  if (card && document.getElementById('cartes-gallery').style.display !== 'none') {
+    let parentGallery = document.getElementById('cartes-gallery');
+    currentImages = Array.from(parentGallery.querySelectorAll(".gallery-carte"));
+    currentIndex = currentImages.indexOf(card);
+    openLightbox();
+  }
 });
+
+if (cartesFolder && cartesGallery && cartesBack) {
+  cartesFolder.addEventListener("click", function(){
+    cartesGallery.style.display = "flex";
+    document.body.style.overflow = "hidden";
+  });
+  cartesBack.addEventListener("click", function(e){
+    e.stopPropagation();
+    cartesGallery.style.display = "none";
+    document.body.style.overflow = "";
+  });
+}
 
 function openLightbox() {
   const img = currentImages[currentIndex];
