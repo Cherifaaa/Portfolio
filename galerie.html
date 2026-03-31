@@ -1,3 +1,28 @@
+      <style>
+        .lqip-img {
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+          transition: background-image 0.3s;
+        }
+        .lqip-img.lqip-loaded {
+          background-image: none !important;
+        }
+      </style>
+    <style>
+      /* Flou temporaire sur images papier pendant le chargement */
+      #papier img.lqip-blur {
+        filter: blur(16px);
+        transition: filter 0.4s;
+      }
+    </style>
+  <style>
+    /* Flou temporaire sur images papier pendant le chargement */
+    #papier img.lqip-blur {
+      filter: blur(16px);
+      transition: filter 0.4s;
+    }
+  </style>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -421,21 +446,25 @@
   </div>
 
   <div id="papier" class="gallery-section active">
-    
-    
-    <img src="Images/tower.webp" alt="Tower" data-title="Baam - Tower of God">
-    <img src="Images/tomie.webp" alt="Tomie" data-title="Tomie - Tomie/Junji Ito">
-    <img src="Images/slayer.webp" alt="Slayer" data-title="Tanjirō  - Demon Slayer">
-    <img src="Images/promised.webp" alt="Promised" data-title="Isabella - The Promised Neverland">
-    <img src="Images/kaneki2.webp" alt="Kaneki2" data-title="Kaneki - Tokyo Ghoul">
-    <img src="Images/kaneki.webp" alt="Kaneki" data-title="Kaneki - Tokyo Ghoul">
-    <img src="Images/breaking.webp" alt="Breaking Bad" data-title=" Heisenberg - Breaking Bad">
-    <img src="Images/killua.webp" alt="Killua" data-title="Killua - Hunter X Hunter">
-    <img src="Images/vinland.webp" alt="Vinland" data-title="Gardar - Vinland Saga">
-    <img src="Images/snk.webp" alt="Snk" data-title=" Reiner - Attack on Titan">
-    <img src="Images/berserk.webp" alt="Berserk" data-title="Guts/Griffith - Berserk">
-    <img src="Images/spider.webp" alt="Spider" data-title=" Venom - Spider-Man">
-    <img src="Images/monter.jpg" alt="Monster" data-title="Johan - Monster">
+    <style>
+      .lqip-container { position: relative; display: inline-block; margin: 8px; width: 250px; vertical-align: top; overflow: hidden; border-radius: 10px; }
+      .lqip-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(18px) brightness(1.1); transition: opacity 0.4s; z-index: 1; pointer-events: none; }
+      .lqip-img { position: relative; width: 100%; height: auto; object-fit: cover; z-index: 2; display: block; background: none; }
+      .lqip-container.loaded .lqip-bg { opacity: 0; }
+    </style>
+      <img class="lqip-img" src="Images/tower.webp" alt="Tower" data-title="Baam - Tower of God" style="background-image: url('Images/tower-lqip.webp');" loading="lazy">
+      <img class="lqip-img" src="Images/tomie.webp" alt="Tomie" data-title="Tomie - Tomie/Junji Ito" style="background-image: url('Images/tomie-lqip.webp');" loading="lazy">
+      <img class="lqip-img" src="Images/slayer.webp" alt="Slayer" data-title="Tanjirō  - Demon Slayer" style="background-image: url('Images/slayer-lqip.webp');" loading="lazy">
+      <img class="lqip-img" src="Images/promised.webp" alt="Promised" data-title="Isabella - The Promised Neverland" style="background-image: url('Images/promised-lqip.webp');" loading="lazy">
+      <img class="lqip-img" src="Images/kaneki2.webp" alt="Kaneki2" data-title="Kaneki - Tokyo Ghoul" style="background-image: url('Images/kaneki2-lqip.webp');" loading="lazy">
+      <img class="lqip-img" src="Images/kaneki.webp" alt="Kaneki" data-title="Kaneki - Tokyo Ghoul" style="background-image: url('Images/kaneki-lqip.webp');" loading="lazy">
+      <img class="lqip-img" src="Images/breaking.webp" alt="Breaking Bad" data-title=" Heisenberg - Breaking Bad" style="background-image: url('Images/breaking-lqip.webp');" loading="lazy">
+      <img class="lqip-img" src="Images/killua.webp" alt="Killua" data-title="Killua - Hunter X Hunter" style="background-image: url('Images/killua-lqip.webp');" loading="lazy">
+      <img class="lqip-img" src="Images/vinland.webp" alt="Vinland" data-title="Gardar - Vinland Saga" style="background-image: url('Images/vinland-lqip.webp');" loading="lazy">
+      <img class="lqip-img" src="Images/snk.webp" alt="Snk" data-title=" Reiner - Attack on Titan" style="background-image: url('Images/snk-lqip.webp');" loading="lazy">
+      <img class="lqip-img" src="Images/berserk.webp" alt="Berserk" data-title="Guts/Griffith - Berserk" style="background-image: url('Images/berserk-lqip.webp');" loading="lazy">
+      <img class="lqip-img" src="Images/spider.webp" alt="Spider" data-title=" Venom - Spider-Man" style="background-image: url('Images/spider-lqip.webp');" loading="lazy">
+      <img class="lqip-img" src="Images/monter.jpg" alt="Monster" data-title="Johan - Monster" style="background-image: url('Images/monter-lqip.webp');" loading="lazy">
     
     
 
@@ -444,19 +473,17 @@
     <div id="digital" class="gallery-section">
       <!-- Images digitales normales -->
       <img src="Images/dig1.png" alt="">
-        <img src="Images/about-01.png" alt="" loading="lazy">
-        <img src="Images/about-02.png" alt="" loading="lazy">
-        <img src="Images/about-05.png" alt="" loading="lazy">
-        <img src="Images/profilee.png" alt="" loading="lazy">
-        <img src="Images/titi.png" alt="" loading="lazy">
-        <img src="Images/max.png" alt="" loading="lazy">
-      
+      <img src="Images/about-01.png" alt="">
+      <img src="Images/about-02.png" alt="">
+      <img src="Images/about-05.png" alt="">
+      <img src="Images/profilee.png" alt="">
+      <img src="Images/titi.png" alt="">
+      <img src="Images/max.png" alt="">
       <div id="cartes-folder" class="cartes-folder">
         <div class="cartes-folder-stack">
           <img src="Images/cartes/c12.png" alt="Carte 1">
           <img src="Images/cartes/c14.png" alt="Carte 2">
           <img src="Images/cartes/c43.png" alt="Carte 3">
-      
         </div>
       </div>
     </div>
@@ -510,7 +537,6 @@
       <img src="Images/cartes/c43.png" alt="Carte 43" data-title="Carte 43" class="gallery-carte">
       <img src="Images/cartes/c44.png" alt="Carte 44" data-title="Carte 44" class="gallery-carte">
       <img src="Images/cartes/c45.png" alt="Carte 45" data-title="Carte 45" class="gallery-carte">
-      
     </div>
 
   <div id="affiche" class="gallery-section">
@@ -518,7 +544,6 @@
     <img src="Images/lahaine.png" alt="Haine" data-title="La Haine - 1995 ">
     <img src="Images/monster.png" alt="Monster" data-title="Monster - 2004  ">
     <img src="Images/ADD.webp" alt="ADD" data-title="Affiche Fête de la Musique ">
-    
   </div>
 
   

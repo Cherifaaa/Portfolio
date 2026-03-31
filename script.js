@@ -1,3 +1,63 @@
+// LQIP PROPRE : retire le fond flou quand l'image nette est chargée
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.lqip-img').forEach(function(img) {
+        function removeLQIP() {
+            img.classList.add('lqip-loaded');
+        }
+        if (img.complete) {
+            removeLQIP();
+        } else {
+            img.addEventListener('load', removeLQIP);
+        }
+    });
+});
+// Flou temporaire sur les images de la section papier (corrigé pour cache et fallback)
+function removeBlurOnPapierImages() {
+    document.querySelectorAll('#papier img.lqip-blur').forEach(function(img) {
+        function removeBlur() {
+            img.classList.remove('lqip-blur');
+        }
+        if (img.complete) {
+            removeBlur();
+        } else {
+            img.addEventListener('load', removeBlur);
+            // Fallback : retire le flou après 2s max quoi qu'il arrive
+            setTimeout(removeBlur, 2000);
+        }
+    });
+}
+if (document.readyState === 'complete') {
+    removeBlurOnPapierImages();
+} else {
+    window.addEventListener('load', removeBlurOnPapierImages);
+}
+// LQIP réel : retire le fond flou quand l'image nette est chargée
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.lqip-container').forEach(function(container) {
+        var img = container.querySelector('.lqip-img');
+        function handleLoaded() {
+            container.classList.add('loaded');
+        }
+        if (img.complete) {
+            handleLoaded();
+        } else {
+            img.addEventListener('load', handleLoaded);
+        }
+    });
+});
+// Flou temporaire sur les images de la section papier
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('#papier img.lqip-blur').forEach(function(img) {
+        function removeBlur() {
+            img.classList.remove('lqip-blur');
+        }
+        if (img.complete) {
+            removeBlur();
+        } else {
+            img.addEventListener('load', removeBlur);
+        }
+    });
+});
 // TYPED JS 
 
 //var typed =  new Typed('#text',{
