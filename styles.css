@@ -32,6 +32,7 @@ html, body {
 
 body {
     background: url('Images/fond.png') no-repeat top center;
+    background-color: #330000;
     background-size: 100% auto; /* Largeur 100%, hauteur automatique pour éviter la coupe */
 }
 
