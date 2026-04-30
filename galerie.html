@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -551,6 +552,20 @@
       document.getElementById('digital').classList.add('active');
       slider.style.left = '33.33%';
     }
+
+    // Correction affichage mobile/desktop au chargement et au resize
+    function fixGalleryDisplay() {
+      const activeSection = document.querySelector('.gallery-section.active');
+      if (activeSection) {
+        if (window.innerWidth <= 600) {
+          activeSection.style.display = 'grid';
+        } else {
+          activeSection.style.display = 'flex';
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', fixGalleryDisplay);
+    window.addEventListener('resize', fixGalleryDisplay);
 
 
 

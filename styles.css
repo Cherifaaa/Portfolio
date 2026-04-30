@@ -1,3 +1,22 @@
+/* Correction responsive : force le bon display selon la largeur pour la galerie */
+@media screen and (max-width: 600px) {
+    .gallery-section.active {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        justify-items: center;
+        padding: 10px 5%;
+    }
+}
+@media screen and (min-width: 601px) {
+    .gallery-section.active {
+        display: flex !important;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        padding: 20px 5%;
+    }
+}
 @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 @font-face {
