@@ -1,3 +1,24 @@
+.gallery-thumb {
+    background: #222;
+    border: 1px solid #333;
+}
+/* SKELETON PLACEHOLDER POUR IMAGES DE GALERIE */
+.gallery-thumb {
+    background: #222;
+    display: block;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+.gallery-thumb:not([src]), .gallery-thumb[src=""] {
+    background: linear-gradient(90deg, #222 25%, #333 50%, #222 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.2s infinite linear;
+}
+@keyframes skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
 /* Correction responsive : force le bon display selon la largeur pour la galerie */
 @media screen and (max-width: 600px) {
     .gallery-section.active {
