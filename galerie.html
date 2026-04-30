@@ -1,39 +1,3 @@
-        <style>
-          .lqip-img {
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            transition: background-image 0.3s;
-          }
-          .lqip-img.lqip-loaded {
-            background-image: none !important;
-          }
-        </style>
-      <style>
-        .lqip-img {
-          background-repeat: no-repeat;
-          background-size: cover;
-          background-position: center;
-          transition: background-image 0.3s;
-        }
-        .lqip-img.lqip-loaded {
-          background-image: none !important;
-        }
-      </style>
-    <style>
-      /* Flou temporaire sur images papier pendant le chargement */
-      #papier img.lqip-blur {
-        filter: blur(16px);
-        transition: filter 0.4s;
-      }
-    </style>
-  <style>
-    /* Flou temporaire sur images papier pendant le chargement */
-    #papier img.lqip-blur {
-      filter: blur(16px);
-      transition: filter 0.4s;
-    }
-  </style>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -457,39 +421,35 @@
   </div>
 
   <div id="papier" class="gallery-section active">
-    <style>
-      .lqip-container { position: relative; display: inline-block; margin: 8px; width: 250px; vertical-align: top; overflow: hidden; border-radius: 10px; }
-      .lqip-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(18px) brightness(1.1); transition: opacity 0.4s; z-index: 1; pointer-events: none; }
-      .lqip-img { position: relative; width: 100%; height: auto; object-fit: cover; z-index: 2; display: block; background: none; }
-      .lqip-container.loaded .lqip-bg { opacity: 0; }
-    </style>
-      <img class="lqip-img" src="Images/tower.webp" alt="Tower" data-title="Baam - Tower of God" style="background-image: url('Images/tower-lqip.webp');" loading="lazy">
-      <img class="lqip-img" src="Images/tomie.webp" alt="Tomie" data-title="Tomie - Tomie/Junji Ito" style="background-image: url('Images/tomie-lqip.webp');" loading="lazy">
-      <img class="lqip-img" src="Images/slayer.webp" alt="Slayer" data-title="Tanjirō  - Demon Slayer" style="background-image: url('Images/slayer-lqip.webp');" loading="lazy">
-      <img class="lqip-img" src="Images/promised.webp" alt="Promised" data-title="Isabella - The Promised Neverland" style="background-image: url('Images/promised-lqip.webp');" loading="lazy">
-      <img class="lqip-img" src="Images/kaneki2.webp" alt="Kaneki2" data-title="Kaneki - Tokyo Ghoul" style="background-image: url('Images/kaneki2-lqip.webp');" loading="lazy">
-      <img class="lqip-img" src="Images/kaneki.webp" alt="Kaneki" data-title="Kaneki - Tokyo Ghoul" style="background-image: url('Images/kaneki-lqip.webp');" loading="lazy">
-      <img class="lqip-img" src="Images/breaking.webp" alt="Breaking Bad" data-title=" Heisenberg - Breaking Bad" style="background-image: url('Images/breaking-lqip.webp');" loading="lazy">
-      <img class="lqip-img" src="Images/killua.webp" alt="Killua" data-title="Killua - Hunter X Hunter" style="background-image: url('Images/killua-lqip.webp');" loading="lazy">
-      <img class="lqip-img" src="Images/vinland.webp" alt="Vinland" data-title="Gardar - Vinland Saga" style="background-image: url('Images/vinland-lqip.webp');" loading="lazy">
-      <img class="lqip-img" src="Images/snk.webp" alt="Snk" data-title=" Reiner - Attack on Titan" style="background-image: url('Images/snk-lqip.webp');" loading="lazy">
-      <img class="lqip-img" src="Images/berserk.webp" alt="Berserk" data-title="Guts/Griffith - Berserk" style="background-image: url('Images/berserk-lqip.webp');" loading="lazy">
-      <img class="lqip-img" src="Images/spider.webp" alt="Spider" data-title=" Venom - Spider-Man" style="background-image: url('Images/spider-lqip.webp');" loading="lazy">
-      <img class="lqip-img" src="Images/monter.jpg" alt="Monster" data-title="Johan - Monster" style="background-image: url('Images/monter-lqip.webp');" loading="lazy">
+    
+    
+    <img src="Images/papier/tower-thumb.jpg" data-full="Images/papier/tower.webp" alt="Tower" data-title="Baam - Tower of God" class="gallery-thumb" loading="lazy">
+    <img src="Images/papier/tomie-thumb.jpg" data-full="Images/papier/tomie.webp" alt="Tomie" data-title="Tomie - Tomie/Junji Ito" class="gallery-thumb" loading="lazy">
+    <img src="Images/papier/slayer-thumb.jpg" data-full="Images/papier/slayer.webp" alt="Slayer" data-title="Tanjirō  - Demon Slayer" class="gallery-thumb" loading="lazy">
+    <img src="Images/papier/promised-thumb.jpg" data-full="Images/papier/promised.webp" alt="Promised" data-title="Isabella - The Promised Neverland" class="gallery-thumb" loading="lazy">
+    <img src="Images/papier/kaneki2-thumb.jpg" data-full="Images/papier/kaneki2.webp" alt="Kaneki2" data-title="Kaneki - Tokyo Ghoul" class="gallery-thumb" loading="lazy">
+    <img src="Images/papier/kaneki-thumb.jpg" data-full="Images/papier/kaneki.webp" alt="Kaneki" data-title="Kaneki - Tokyo Ghoul" class="gallery-thumb" loading="lazy">
+    <img src="Images/papier/breaking-thumb.jpg" data-full="Images/papier/breaking.webp" alt="Breaking Bad" data-title=" Heisenberg - Breaking Bad" class="gallery-thumb" loading="lazy">
+    <img src="Images/papier/killua-thumb.jpg" data-full="Images/papier/killua.webp" alt="Killua" data-title="Killua - Hunter X Hunter" class="gallery-thumb" loading="lazy">
+    <img src="Images/papier/vinland-thumb.jpg" data-full="Images/papier/vinland.webp" alt="Vinland" data-title="Gardar - Vinland Saga" class="gallery-thumb" loading="lazy">
+    <img src="Images/papier/snk-thumb.jpg" data-full="Images/papier/snk.webp" alt="Snk" data-title=" Reiner - Attack on Titan" class="gallery-thumb" loading="lazy">
+    <img src="Images/papier/berserk-thumb.jpg" data-full="Images/papier/berserk.webp" alt="Berserk" data-title="Guts/Griffith - Berserk" class="gallery-thumb" loading="lazy">
+    <img src="Images/papier/spider-thumb.jpg" data-full="Images/papier/spider.webp" alt="Spider" data-title=" Venom - Spider-Man" class="gallery-thumb" loading="lazy">
+    <img src="Images/papier/monter-thumb.jpg" data-full="Images/papier/monter.jpg" alt="Monster" data-title="Johan - Monster" class="gallery-thumb" loading="lazy">
     
     
 
   </div>
 
     <div id="digital" class="gallery-section">
-      <!-- Images digitales normales -->
-      <img class="lqip-img" src="Images/dig1.png" alt="" style="background-image: url('Images/dig1-lqip.png');" loading="lazy">
-      <img class="lqip-img" src="Images/about-01.png" alt="" style="background-image: url('Images/about-01-lqip.png');" loading="lazy">
-      <img class="lqip-img" src="Images/about-02.png" alt="" style="background-image: url('Images/about-02-lqip.png');" loading="lazy">
-      <img class="lqip-img" src="Images/about-05.png" alt="" style="background-image: url('Images/about-05-lqip.png');" loading="lazy">
-      <img class="lqip-img" src="Images/profilee.png" alt="" style="background-image: url('Images/profilee-lqip.png');" loading="lazy">
-      <img class="lqip-img" src="Images/titi.png" alt="" style="background-image: url('Images/titi-lqip.png');" loading="lazy">
-      <img class="lqip-img" src="Images/max.png" alt="" style="background-image: url('Images/max-lqip.png');" loading="lazy">
+      <!-- Images digitales avec miniatures -->
+      <img src="Images/digital/dig1-thumb.jpg" data-full="Images/digital/dig1.png" alt="" class="gallery-thumb" loading="lazy">
+      <img src="Images/digital/about-01-thumb.jpg" data-full="Images/digital/about-01.png" alt="" class="gallery-thumb" loading="lazy">
+      <img src="Images/digital/about-02-thumb.jpg" data-full="Images/digital/about-02.png" alt="" class="gallery-thumb" loading="lazy">
+      <img src="Images/digital/about-05-thumb.jpg" data-full="Images/digital/about-05.png" alt="" class="gallery-thumb" loading="lazy">
+      <img src="Images/digital/profilee-thumb.jpg" data-full="Images/digital/profilee.png" alt="" class="gallery-thumb" loading="lazy">
+      <img src="Images/digital/titi-thumb.jpg" data-full="Images/digital/titi.png" alt="" class="gallery-thumb" loading="lazy">
+      <img src="Images/digital/max-thumb.jpg" data-full="Images/digital/max.png" alt="" class="gallery-thumb" loading="lazy">
       <div id="cartes-folder" class="cartes-folder">
         <div class="cartes-folder-stack">
           <img src="Images/cartes/c12.png" alt="Carte 1">
@@ -498,7 +458,7 @@
         </div>
       </div>
     </div>
-    <!-- Cartes gallery overlay, outside main gallery sections -->
+    <!-- Cartes gallery overlay, outside main gallery sections-->
     <div id="cartes-gallery" class="cartes-gallery-overlay">
       <button id="cartes-back" style="position: fixed; left: 20px; top: 20px; z-index: 3500; background: #222; color: #fff; border: none; border-radius: 6px; padding: 8px 18px; font-size: 1rem; cursor: pointer; box-shadow: 0 2px 8px #0005;">Retour</button>
       <!-- Cartes images (même style que galerie) -->
@@ -551,10 +511,10 @@
     </div>
 
   <div id="affiche" class="gallery-section">
-    <img class="lqip-img" src="Images/ghost.png" alt="Ghost" data-title="Ghost in the Shell - 1995 " style="background-image: url('Images/ghost-lqip.png');" loading="lazy">
-    <img class="lqip-img" src="Images/lahaine.png" alt="Haine" data-title="La Haine - 1995 " style="background-image: url('Images/lahaine-lqip.png');" loading="lazy">
-    <img class="lqip-img" src="Images/monster.png" alt="Monster" data-title="Monster - 2004  " style="background-image: url('Images/monster-lqip.png');" loading="lazy">
-    <img class="lqip-img" src="Images/ADD.webp" alt="ADD" data-title="Affiche Fête de la Musique " style="background-image: url('Images/ADD-lqip.webp');" loading="lazy">
+    <img src="Images/affiche/ghost.png" alt="Ghost" data-title="Ghost in the Shell - 1995 ">
+    <img src="Images/affiche/lahaine.png" alt="Haine" data-title="La Haine - 1995 ">
+    <img src="Images/affiche/monster.png" alt="Monster" data-title="Monster - 2004  ">
+    <img src="Images/affiche/ADD.webp" alt="ADD" data-title="Affiche Fête de la Musique ">
   </div>
 
   

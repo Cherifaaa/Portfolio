@@ -1,62 +1,52 @@
-// LQIP PROPRE : retire le fond flou quand l'image nette est chargée
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.lqip-img').forEach(function(img) {
-        function removeLQIP() {
-            img.classList.add('lqip-loaded');
-        }
-        if (img.complete) {
-            removeLQIP();
-        } else {
-            img.addEventListener('load', removeLQIP);
-        }
+// --- Lightbox galerie thumbs ---
+document.addEventListener("DOMContentLoaded", function () {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxTitle = document.getElementById('lightbox-title');
+    let currentImgIndex = 0;
+    let currentGallery = [];
+
+    function openLightbox(img, gallery) {
+        // Si data-full existe, on l'utilise, sinon src
+        const fullSrc = img.getAttribute('data-full') || img.src;
+        lightbox.style.display = 'flex';
+        lightboxImg.src = fullSrc;
+        lightboxTitle.textContent = img.getAttribute('data-title') || '';
+        currentImgIndex = gallery.indexOf(img);
+        currentGallery = gallery;
+    }
+
+    document.querySelectorAll('.gallery-section img').forEach(img => {
+        img.addEventListener('click', function() {
+            const gallery = Array.from(this.parentNode.querySelectorAll('img'));
+            openLightbox(this, gallery);
+        });
     });
-});
-// Flou temporaire sur les images de la section papier (corrigé pour cache et fallback)
-function removeBlurOnPapierImages() {
-    document.querySelectorAll('#papier img.lqip-blur').forEach(function(img) {
-        function removeBlur() {
-            img.classList.remove('lqip-blur');
+
+    document.getElementById('lightbox-close').onclick = function() {
+        lightbox.style.display = 'none';
+        lightboxImg.src = '';
+    };
+
+    document.getElementById('prev').onclick = function() {
+        if (currentGallery.length > 0) {
+            currentImgIndex = (currentImgIndex - 1 + currentGallery.length) % currentGallery.length;
+            const img = currentGallery[currentImgIndex];
+            const fullSrc = img.getAttribute('data-full') || img.src;
+            lightboxImg.src = fullSrc;
+            lightboxTitle.textContent = img.getAttribute('data-title') || '';
         }
-        if (img.complete) {
-            removeBlur();
-        } else {
-            img.addEventListener('load', removeBlur);
-            // Fallback : retire le flou après 2s max quoi qu'il arrive
-            setTimeout(removeBlur, 2000);
+    };
+
+    document.getElementById('next').onclick = function() {
+        if (currentGallery.length > 0) {
+            currentImgIndex = (currentImgIndex + 1) % currentGallery.length;
+            const img = currentGallery[currentImgIndex];
+            const fullSrc = img.getAttribute('data-full') || img.src;
+            lightboxImg.src = fullSrc;
+            lightboxTitle.textContent = img.getAttribute('data-title') || '';
         }
-    });
-}
-if (document.readyState === 'complete') {
-    removeBlurOnPapierImages();
-} else {
-    window.addEventListener('load', removeBlurOnPapierImages);
-}
-// LQIP réel : retire le fond flou quand l'image nette est chargée
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.lqip-container').forEach(function(container) {
-        var img = container.querySelector('.lqip-img');
-        function handleLoaded() {
-            container.classList.add('loaded');
-        }
-        if (img.complete) {
-            handleLoaded();
-        } else {
-            img.addEventListener('load', handleLoaded);
-        }
-    });
-});
-// Flou temporaire sur les images de la section papier
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('#papier img.lqip-blur').forEach(function(img) {
-        function removeBlur() {
-            img.classList.remove('lqip-blur');
-        }
-        if (img.complete) {
-            removeBlur();
-        } else {
-            img.addEventListener('load', removeBlur);
-        }
-    });
+    };
 });
 // TYPED JS 
 
