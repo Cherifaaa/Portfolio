@@ -28,12 +28,12 @@ html, body {
     padding: 0;
     width: 100%;
     height: 100%;
-    background-color: #330000;
+    background-color: #220000;
 }
 
 body {
-    background: url('Images/fond.png') no-repeat top center;
-    background-color: #330000;
+    background: url('Images/fond-thumb.jpg') no-repeat top center;
+    background-color: #220000;
     background-size: 100% auto; /* Largeur 100%, hauteur automatique pour éviter la coupe */
 }
 
@@ -41,7 +41,7 @@ body {
     width: 100%;
     height: auto;
     min-height: 100vh; /* Assure que la page ne soit jamais plus petite que l'écran */
-    background: url('Images/fond.png') no-repeat top center;
+    background: url('Images/fond-thumb.jpg') no-repeat top center;
     background-size: 100% auto; /* L’image garde ses proportions */
 }
 
@@ -50,7 +50,7 @@ body {
 :root{
     /* --body-color: #060606;
     --prim-color:#330000;*/
-    --gradient-color:linear-gradient(264.28deg, #330000 38.2%, #070607 103.12%), rgba(255,255,255,0.1);
+    --gradient-color:linear-gradient(264.28deg, #220000 38.2%, #070607 103.12%), rgba(255,255,255,0.1);
     --sec-gradient-color:linear-gradient(265.05deg, #FFCB52 -6.15%, #FF7B02 106.32%);
     --white-color: #fff;
     --black-color:#000;
@@ -1295,7 +1295,7 @@ header{
 
 @media (max-width:1500px) {
     body {
-        background: url('Images/fond2.png') no-repeat top center;
+        background: url('Images/fond2-thumb.jpg') no-repeat top center;
         background-size: 100% auto;
     }
 }
@@ -1309,7 +1309,7 @@ header{
 
 @media (max-width:1300px) {
     body {
-        background: url('Images/fond2.png') no-repeat top center;
+        background: url('Images/fond2-thumb.png') no-repeat top center;
         background-size: 100% auto;
     }
     .hero_content h1{
@@ -1402,7 +1402,7 @@ header{
 @media (max-width:1070px) {
     
     body {
-        background: url('Images/fond3.png') no-repeat top center;
+        background: url('Images/fond3-thumb.jpg') no-repeat top center;
         background-size: 100% auto;
     }
 }
@@ -1410,7 +1410,7 @@ header{
 @media (max-width:900px) {
     
     body {
-        background: url('Images/fond4.png') no-repeat top center;
+        background: url('Images/fond4-thumb.jpg') no-repeat top center;
         background-size: 100% auto;
     }
     .bars{
@@ -1552,7 +1552,7 @@ header{
 }
 @media (max-width:690px) {
     body {
-        background: url('Images/fond5.png') no-repeat top center;
+        background: url('Images/fond5-thumb.jpg') no-repeat top center;
         background-size: cover;
 background-position: top center;
 background-repeat: no-repeat;
@@ -1564,7 +1564,7 @@ background-repeat: no-repeat;
     display: none !important;
   }
     body {
-        background: url('Images/fond6.png') no-repeat top center;
+        background: url('Images/fond6-thumb.png') no-repeat top center;
        background-size: cover;
 background-position: top center;
 background-repeat: no-repeat;
@@ -1724,7 +1724,7 @@ width: 130px;
 }
 @media (max-width: 500px) {
   body {
-    background: url('Images/fond6.png') no-repeat top center;
+    background: url('Images/fond6-thumb.jpg') no-repeat top center;
     background-size: cover;
     background-position: top center;
     background-repeat: no-repeat;
