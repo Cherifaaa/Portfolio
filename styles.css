@@ -1349,7 +1349,7 @@ header{
 
 @media (max-width:1300px) {
     body {
-        background: url('Images/fond2-thumb.png') no-repeat top center;
+        background: url('Images/fond2-thumb.jpg') no-repeat top center;
         background-size: 100% auto;
     }
     .hero_content h1{
@@ -1604,7 +1604,7 @@ background-repeat: no-repeat;
     display: none !important;
   }
     body {
-        background: url('Images/fond6-thumb.png') no-repeat top center;
+        background: url('Images/fond6-thumb.jpg') no-repeat top center;
        background-size: cover;
 background-position: top center;
 background-repeat: no-repeat;
