@@ -1,3 +1,38 @@
+
+a,
+button,
+input,
+select,
+textarea,
+#heart-btn,
+.speciality_card,
+
+[onclick],
+.gallery-thumb,
+.gallery-carte,
+.switch-btn,
+#prev,
+#next,
+#lightbox-close,
+#cartes-folder,
+#cartes-back,
+.menu li,
+.menu,
+.show_menu{
+    cursor: url("./Images/crosshair22.png") 17 17, pointer;
+}
+.star-trail {
+    position: fixed;
+    pointer-events: none;
+    z-index: 99999;
+
+    font-size: 18px;
+    line-height: 1;
+    user-select: none;
+
+    transform: translate(-50%, -50%);
+    text-shadow: 0 0 10px #ff4db8, 0 0 20px #ff1493;
+}
 .gallery-thumb {
     background: #222;
     border: 1px solid transparent;
@@ -52,6 +87,10 @@
     font-family:brasika;
     src: url(Conthrax-Font/brasika.otf);
 }
+@font-face {
+    font-family:CloisterBlack;
+    src: url(Conthrax-Font/CloisterBlack.ttf);
+}
 
 *{
     margin: 0;
@@ -67,13 +106,13 @@ html, body {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%;
-    background-color: #220000;
+    min-height: 100%;
+    overflow-x: hidden;
 }
 
 body {
-    background: url('Images/fond-thumb.jpg') no-repeat top center;
-    background-color: #220000;
+    
+    background-attachment: scroll; 
     background-size: 100% auto; /* Largeur 100%, hauteur automatique pour éviter la coupe */
 }
 
@@ -81,7 +120,7 @@ body {
     width: 100%;
     height: auto;
     min-height: 100vh; /* Assure que la page ne soit jamais plus petite que l'écran */
-    background: url('Images/fond-thumb.jpg') no-repeat top center;
+   
     background-size: 100% auto; /* L’image garde ses proportions */
 }
 
@@ -120,7 +159,6 @@ section{
 }
 
 body{
-    background-color: var(--body-color);
     overflow-x: hidden;
     color: var(--white-color);
 }
@@ -129,11 +167,109 @@ body{
 
 nav{
     width: 100%;
-    height: 100px;
+    height: 133px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 12%;
+    position: relative;
+    z-index: 10;
+
+}
+/* bande rose */
+nav{
+    position: relative;
+}
+
+/* bande de base (rose / métal léger) */
+nav::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 100%;
+    height: 45px;
+
+    background: linear-gradient(
+        90deg,
+        rgba(255, 20, 150, 0.25),
+        rgba(255, 255, 255, 0.2),
+        rgba(255, 20, 150, 0.25)
+    );
+
+    z-index: 0;
+    pointer-events: none;
+     opacity: 0.6;
+} 
+nav::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 100%;
+    height: 45px;
+
+    background-image: url("./Images/grey glitter.jpg");
+    background-size: 120px;
+    background-repeat: repeat;
+
+    opacity: 0.45;
+
+    mix-blend-mode: screen;
+
+    pointer-events: none;
+    z-index: 0;
+}
+nav > * {
+    position: relative;
+    z-index: 1;
+}
+.nav-flower{
+    position: absolute;
+    pointer-events: none;
+    /*z-index: 0; */
+}
+
+/* IMPORTANT : contenu du nav au-dessus */
+nav > *{
+    position: relative;
+    z-index: 2;
+}
+
+/* 🌸 exemples de positions */
+
+.nav-flower.top-right{
+top: -14px;
+  right: 80px;
+  width: 180px;
+  opacity: 1;
+}
+
+.nav-flower.bottom-left{
+bottom: 12px;
+  left: -15px;
+  width: 218px;
+  opacity: 1;
+
+}
+.nav-flower.top-right2{
+top: -50px;
+  right: 239px;
+  width: 209px;
+  height: 140px;
+    opacity: 0.8;
+}
+
+.nav-flower.right-mid{
+top: -14px;
+  right: -15px;
+  width: 197px;
+  height: 194px;
+
 }
 
 /*.logo a{
@@ -153,27 +289,68 @@ nav{
     display: inline-block;
 }
 
-.logo img {
-    width: 185px; /* ajuste la taille selon ton besoin */
-    height: 50px;
-    display: block;
-}
 
+.logo img{
+width: 188px;
+  height: 131px;
+    display: block;
+
+    transform: scale(1.4);
+    transform-origin: left center;
+}
+.logo img:hover {
+    transform: scale(1.5);
+}
 .menu {
     display: flex;
     align-items: center;
     gap: 20px;
 }
+
 .menu li a{
-    color: var(--white-color);
-    font-size: 1.2rem;
-    font-weight: 500;
-    transition: var(--transition);
-}
-.menu li:hover a{
-    color: var(--prim-color);
+    position: relative;
+    display: inline-block;
+
+    font-family: brasika;
+    font-size: 1.3rem;
+    font-weight: 600;
+
+    color: #000;
+
+    -webkit-text-stroke: 0.3px rgba(200, 0, 123, 0.9);
+
+    transition: transform 0.3s ease;
 }
 
+/* couche glitter */
+.menu li a::after{
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+
+    background-image: url("./Images/grey glitter.jpg");
+    background-repeat: repeat;
+    background-size: 50px;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    /* IMPORTANT : on recopie le stroke */
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.9);
+}
+
+/* hover */
+.menu li a:hover{
+    transform: scale(1.05);
+}
+
+.menu li a:hover::after{
+    opacity: 1;
+}
 #heart-btn {
     width: 65px; 
     height: 65px;
@@ -353,8 +530,8 @@ header{
 }
 .img_box{
     position: absolute;
-    top: 3%;
-    left: 80%;
+    top: -15%;
+    left: 70%;
     width: 160px;
     /*padding: 20px;
     
@@ -367,14 +544,14 @@ header{
     z-index: 4;
 }
 .img_box img{
-    width: 130px;
-    height: 130px;
+    width: 190px;
+    height: 190px;
     z-index: 5;
     
 }
 .img_box2 img{
-    width: 150px;
-    height: 150px;
+    width: 160px;
+    height: 160px;
     z-index: 5;
     
 }
@@ -1225,7 +1402,11 @@ header{
 
 
 
-
+ .about_img_shape4{
+        width: 170px;
+        height: 170px;
+        left: 28%;
+    }
 
 
 .gallery-title {
@@ -1341,13 +1522,15 @@ header{
 }
 @media (max-width:1450px) {
     .about_img_shape4{
-        width: 170px;
-        height: 170px;
+        width: 150px;
+        height: 150px;
         left: 28%;
     }
 }
 
 @media (max-width:1300px) {
+
+    
     body {
         background: url('Images/fond2-thumb.jpg') no-repeat top center;
         background-size: 100% auto;
@@ -1384,8 +1567,8 @@ header{
         top: 85%;
     }
     .about_img_shape4{
-        width: 180px;
-        height: 180px;
+        width: 160px;
+        height: 160px;
         left: 28%;
     }
     .about_imgs img{
@@ -1439,8 +1622,66 @@ header{
         font-size: 2rem;
     }
 }
+@media (max-width:1170px) {
+      /* logo */
+  .logo {
+    display: none !important;
+  }
+
+  /* toutes les fleurs / décos */
+  .nav-flower {
+    display: none !important;
+  }
+
+  /* si tu veux aussi virer les boutons */
+  .nav_btns {
+    display: none !important;
+  }
+        .bars {
+margin-left: auto;
+    width: 232px;
+    height: 156px;
+    background: url("./Images/menu.webp") no-repeat center;
+    background-size: auto;
+    background-size: auto;
+    background-size: auto;
+    background-size: auto;
+    background-size: 222px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 @media (max-width:1070px) {
-    
+      /* logo */
+  .logo {
+    display: none !important;
+  }
+
+  /* toutes les fleurs / décos */
+  .nav-flower {
+    display: none !important;
+  }
+
+  /* si tu veux aussi virer les boutons */
+  .nav_btns {
+    display: none !important;
+  }
+        .bars {
+margin-left: auto;
+    width: 232px;
+    height: 156px;
+    background: url("./Images/menu.webp") no-repeat center;
+    background-size: auto;
+    background-size: auto;
+    background-size: auto;
+    background-size: auto;
+    background-size: 222px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
     body {
         background: url('Images/fond3-thumb.jpg') no-repeat top center;
         background-size: 100% auto;
@@ -1448,24 +1689,52 @@ header{
 }
 
 @media (max-width:900px) {
+
+nav.menu-open .logo,
+nav.menu-open .bars,
+nav.menu-open .nav_btns,
+nav.menu-open .nav-flower {
+    display: none !important;
+}
+}
+@media (max-width:900px) {
     
     body {
         background: url('Images/fond4-thumb.jpg') no-repeat top center;
         background-size: 100% auto;
     }
-    .bars{
+
+
+
+
+    nav {
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: center;
-        width: 50px;
-        height: 50px;
-        /* border:1px solid  var(--light-border); */
-        background: var(--gradient-color);
-        background-size: 200% 200%;
+        padding-right: 0;
     }
-    nav{
-        position: relative;
+
+    .bars {
+margin-left: auto;
+    width: 232px;
+    height: 156px;
+    background: url("./Images/menu.webp") no-repeat center;
+    background-size: auto;
+    background-size: auto;
+    background-size: auto;
+    background-size: auto;
+    background-size: 222px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+    
+
+    .bars i {
+        display: none;
     }
+
     .menu{
         position: absolute;
         top: 100%;
@@ -1487,6 +1756,9 @@ header{
     .menu li{
         padding: 10px 0;
     }
+    .menu li a {
+    color: #fff !important;
+}
     .show_menu{
         left: 0;
         opacity: 1;
@@ -1536,8 +1808,8 @@ header{
         height: 120px;
     }
     .about_img_shape4{
-        width: 250px;
-        height: 250px;
+        width: 150px;
+        height: 150px;
         top: 85%;
         left: 55%;
     }
@@ -1599,7 +1871,21 @@ background-repeat: no-repeat;
 
     }
 }
-@media (max-width:500px) {
+@media (max-width:550px) {
+
+       .bars {
+margin-left: auto;
+    width: 202px;
+    height: 129px;
+    background: url("./Images/menu.webp") no-repeat center;
+    background-size: auto;
+    background-size: auto;
+    background-size: auto;
+    background-size: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .nav_btns {
     display: none !important;
   }
@@ -1651,8 +1937,8 @@ background-repeat: no-repeat;
     left: -15.5%;
   }
    .img_box img {
-width: 88px;
-    height: 83px;
+width: 125px;
+    height: 125px;
   z-index: 5;
 }
 .img_box2 img {

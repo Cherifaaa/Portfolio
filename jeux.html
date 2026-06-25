@@ -11,6 +11,102 @@
     <!-- Swiper Slider CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.css">
   <style>
+    
+
+html{
+    scroll-behavior:smooth;
+    background:#000;
+}
+
+body {
+
+    cursor: url("./Images/mouse.png") 4 4, auto;
+
+    overflow-x: hidden;
+
+    background: linear-gradient(
+        180deg,
+        #000000 0%,
+        #a41a61 15%,
+        #ff1097 40%,
+        #ff2fa5 70%,
+        #4e1330 100%
+    );
+
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+
+    color: var(--white-color);
+}
+
+/* écran noir overlay */
+#fadeBlack {
+    position: fixed;
+    inset: 0;
+    background: black;
+    z-index: 999999;
+
+    opacity: 1;
+    pointer-events: none;
+
+    /* 🔥 plus doux + plus ciné */
+    transition: opacity 2.2s cubic-bezier(0.76, 0, 0.24, 1);
+}
+#fadeBlack::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at center,
+        rgba(0,0,0,1) 0%,
+        rgba(0,0,0,0.85) 60%,
+        rgba(0,0,0,0) 100%
+    );
+    opacity: 0.6;
+}
+/* disparition */
+#fadeBlack.hide {
+    opacity: 0;
+}
+
+#circle-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* cercle */
+.circle {
+    position: absolute;
+    border-radius: 50%;
+
+    /* ❌ plus de remplissage */
+    background: transparent;
+
+    /* ✅ juste un contour */
+    border: 5px solid rgba(255, 255, 255, 1.45);
+
+    transform: scale(0);
+    opacity: 0;
+
+    animation: popIn 2.5s ease-out forwards;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
     body {
       font-family: 'Arial', sans-serif;
       background-color: #111;
@@ -132,50 +228,6 @@ margin-bottom: 9px;
     margin: 10px auto 0;
   }
   
-
-  /* Menu burger mobile */
-  .bars {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    background: var(--gradient-color);
-    background-size: 200% 200%;
-  }
-
-  nav {
-    position: relative;
-  }
-
-  .menu {
-    position: absolute;
-    top: 100%;
-    left: -100%;
-    opacity: 0;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1% 12%;
-    width: 100%;
-    border: 1px solid var(--light-border);
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-    z-index: 999;
-    transition: var(--transition2);
-  }
-
-  .menu li {
-    padding: 10px 0;
-  }
-
-  .nav_btns i {
-    display: none;
-  }
-
-  .show_menu {
-    left: 0;
-    opacity: 1;
-  }
   }
 
 
@@ -206,38 +258,62 @@ margin-bottom: 9px;
 
 
 
+@media (max-width: 900px) {
 
+  /* logo */
+  .logo {
+    display: none !important;
+  }
+
+  /* toutes les fleurs / décos */
+  .nav-flower {
+    display: none !important;
+  }
+
+  /* si tu veux aussi virer les boutons */
+  .nav_btns {
+    display: none !important;
+  }
+
+
+}
 
   </style>
 </head>
 <body>
-
+    
+    <div id="background"></div>
+<div id="circle-layer"></div>
   <!-- NAV BAR (tu peux la copier-coller depuis index si tu veux l'uniformiser) -->
    
   <div id="background"></div>
 
    
   <!-- NAV  -->
-  <nav>
-      <div class="logo">
-          <img src="Images/logo2.png" alt="BotNexus Logo">
-      </div>
-      <ul class="menu">
-          <li><a href="index.html">Accueil</a></li>
-          <li><a href="galerie.html">Arts</a></li>
-          <li><a href="video.html">Videos</a></li>
-          <li><a href="jeux.html">Jeux</a></li>
-          <li><a href="site.html">Sites</a></li>
-      </ul>
-      <div class="nav_btns">
-
-          <img id="heart-btn" src="Images/coeur1.png" alt="Like Button">
-      </div>
-      
-      <div class="bars">
-          <i class="ri-menu-2-line"></i>
-      </div>
-  </nav>
+<nav>
+       <a href="index.html" class="logo">
+    <img src="Images/logo.webp" alt="BotNexus Logo">
+</a>
+        <ul class="menu">
+            <li><a href="dep.html" data-text="Accueil" >Accueil</a></li>
+            <li><a href="galerie.html" data-text="Arts" >Arts</a></li>
+            <li><a href="video.html" data-text="Videos" >Videos</a></li>
+            <li><a href="jeux.html" data-text="Jeux" >Jeux</a></li>
+            <li><a href="site.html" data-text="Sites" >Sites</a></li>
+        </ul>
+        <div class="nav_btns">
+  
+             <!--<img id="heart-btn" src="Images/coeur1.png" alt="Like Button">-->
+        </div>
+        
+        <div class="bars">
+            
+        </div>
+        <img class="nav-flower top-right" src="Images/fleur_top.webp" alt="">
+<img class="nav-flower bottom-left" src="Images/fleur_bottom.webp" alt="">
+<img class="nav-flower top-right2" src="Images/fleur_top2.webp" alt="">
+<img class="nav-flower right-mid" src="Images/skull flower.webp" alt="">
+    </nav>
 
   <h1 class="gallery-title">Jeux</h1>
 
@@ -324,7 +400,38 @@ margin-bottom: 9px;
   bar.addEventListener('click', () => {
     menu.classList.toggle('show_menu');
   });
+window.addEventListener("load", () => {
+    requestAnimationFrame(() => {
+        document.getElementById("fadeBlack").classList.add("hide");
+    });
+});
+
+
+function createCircle() {
+    const circle = document.createElement("div");
+    circle.classList.add("circle");
+
+    const size = Math.random() * 120 + 20; // 20px → 140px
+
+    circle.style.width = size + "px";
+    circle.style.height = size + "px";
+
+    circle.style.left = Math.random() * 100 + "vw";
+    circle.style.top = Math.random() * 100 + "vh";
+
+    document.getElementById("circle-layer").appendChild(circle);
+
+    // supprime après animation
+    setTimeout(() => {
+        circle.remove();
+    }, 3000);
+}
+
+// spawn en continu
+setInterval(createCircle, 400);
+
 </script>
 
+<script src="cursor.js"></script>
 </body>
 </html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Remix icon  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.css">
+    <!-- Swiper Slider CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.css">
+<style>
+
+
+html{
+    scroll-behavior:smooth;
+    background:#000;
+}
+
+body {
+
+    cursor: url("./Images/mouse.png") 4 4, auto;
+
+    overflow-x: hidden;
+
+    background: linear-gradient(
+        180deg,
+        #000000 0%,
+        #a41a61 15%,
+        #ff1097 40%,
+        #ff2fa5 70%,
+        #4e1330 100%
+    );
+
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+
+    color: var(--white-color);
+}
+
+/* écran noir overlay */
+#fadeBlack {
+    position: fixed;
+    inset: 0;
+    background: black;
+    z-index: 999999;
+
+    opacity: 1;
+    pointer-events: none;
+
+    /* 🔥 plus doux + plus ciné */
+    transition: opacity 2.2s cubic-bezier(0.76, 0, 0.24, 1);
+}
+#fadeBlack::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at center,
+        rgba(0,0,0,1) 0%,
+        rgba(0,0,0,0.85) 60%,
+        rgba(0,0,0,0) 100%
+    );
+    opacity: 0.6;
+}
+/* disparition */
+#fadeBlack.hide {
+    opacity: 0;
+}
+
+#circle-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* cercle */
+.circle {
+    position: absolute;
+    border-radius: 50%;
+
+    /* ❌ plus de remplissage */
+    background: transparent;
+
+    /* ✅ juste un contour */
+    border: 5px solid rgba(255, 255, 255, 1.45);
+
+    transform: scale(0);
+    opacity: 0;
+
+    animation: popIn 2.5s ease-out forwards;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+@media (max-width: 900px) {
+
+  /* logo */
+  .logo {
+    display: none !important;
+  }
+
+  /* toutes les fleurs / décos */
+  .nav-flower {
+    display: none !important;
+  }
+
+  /* si tu veux aussi virer les boutons */
+  .nav_btns {
+    display: none !important;
+  }
+
+
+}
+    </style>
+</head>
+
+<body>
+    <div id="fadeBlack"></div>
+    <div id="background"></div>
+<div id="circle-layer"></div>
+
+
+    <!-- NAV  -->
+    <nav>
+       <a href="index.html" class="logo">
+    <img src="Images/logo.webp" alt="BotNexus Logo">
+</a>
+        <ul class="menu">
+            <li><a href="dep.html" data-text="Accueil" >Accueil</a></li>
+            <li><a href="galerie.html" data-text="Arts" >Arts</a></li>
+            <li><a href="video.html" data-text="Videos" >Videos</a></li>
+            <li><a href="jeux.html" data-text="Jeux" >Jeux</a></li>
+            <li><a href="site.html" data-text="Sites" >Sites</a></li>
+        </ul>
+        <div class="nav_btns">
+  
+             <!--<img id="heart-btn" src="Images/coeur1.png" alt="Like Button">-->
+        </div>
+        
+        <div class="bars">
+            
+        </div>
+        <img class="nav-flower top-right" src="Images/fleur_top.webp" alt="">
+<img class="nav-flower bottom-left" src="Images/fleur_bottom.webp" alt="">
+<img class="nav-flower top-right2" src="Images/fleur_top2.webp" alt="">
+<img class="nav-flower right-mid" src="Images/skull flower.webp" alt="">
+    </nav>
+    <!-- HERO HEADER  -->
+    <header>
+        <div class="hero_content">
+            <h1>Mon <span id="text"></span>
+                <br> Portfolio
+            </h1>
+            <p>Salut ! , je suis Cherifa. Bienvenue sur mon site où je présente mes différentes réalisations ⋆｡°✩ </p>
+            <!--<button>Get Connected</button> -->
+            <div class="swiper brandSwiper">
+                <div class="swiper-wrapper">
+                    <!-- slide 1 -->
+                    <div class="swiper-slide">
+                        <img src="Images/brand-01.webp" alt="">
+                    </div>
+                    <!-- slide 2 -->
+                    <div class="swiper-slide">
+                        <img src="Images/brand-02.webp" alt="">
+                    </div>
+                    <!-- slide 3 -->
+                    <div class="swiper-slide">
+                        <img src="Images/brand-03.webp" alt="">
+                    </div>
+                    <!-- slide 4 -->
+                    <div class="swiper-slide">
+                        <img src="Images/brand-04.webp" alt="">
+                    </div>
+                    <!-- slide 5 -->
+                    <div class="swiper-slide">
+                        <img src="Images/brand-05.webp" alt="">
+                    </div>
+                    <!-- slide 6 -->
+                    <div class="swiper-slide">
+                        <img src="Images/brand-06.webp" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero_img">
+            <div class="hero_img2">
+            <img src="Images/profileee.webp" alt="">
+        </div>
+            <div class="img_box">
+                <img src="Images/profile icon 1.webp" alt="">
+
+            </div>
+            <div class="img_box img_box2">
+                <img src="Images/profile icon 2.webp" alt="">
+
+            </div>
+        </div>
+        <div class="hero_shape"></div>
+    </header>
+    <!-- ABOUT  -->
+    <section class="about">
+        <div class="bg_shape"></div>
+        <img src="Images/img port 2.webp" alt="" class="about_img_shape about_img_shape1">
+        <img src="Images/about-03.webp" alt="" class="about_img_shape about_img_shape2">
+        <!--<img src="Images/about-04.webp" alt="" class="about_img_shape about_img_shape3">-->
+        <img src="Images/about-05.webp" alt="" class="about_img_shape about_img_shape4">
+        <div class="about_imgs">
+            <img src="Images/img port 1.webp" alt="">
+        </div>
+        <div class="about_content">
+            <div class="Headings">
+                <h1>A propos de moi</h1>
+            </div>
+            <p>Passionnée par l'audiovisuel et le graphisme, je pratique le dessin traditionnel et digital , le montage vidéo  et la réalisation d'affiches .
+             </p>
+            <p>Étant étudiante en BUT Informatique, j'ai également pu réaliser des jeux et des sites.</p>
+
+        </div>
+    </section>
+    <!-- OUR SPECIALITY -->
+    <section class="speciality">
+        <div class="bg_shape"></div>
+        <div class="Headings">
+            <h1>Mes realisations</h1>
+     
+        </div>
+        <div class="speciality_cards">
+            <!-- card 1 -->
+            <a href="galerie.html" class="speciality_card">
+                <img src="Images/icon 1.webp"  alt="">
+                <div class="speciality_card_info">
+                    <h2>Arts</h2>
+                    <!--<p>Oficia dese runt mollit anim id est labo met, consectetur adipis</p> -->
+                    <h1>01</h1>
+                </div>
+            </a>
+            <!-- card 2 -->
+            <a href="video.html" class="speciality_card">
+                <img src="Images/icon 2.webp" alt="">
+                <div class="speciality_card_info">
+                    <h2>Videos</h2>
+                    <!--<p>Oficia dese runt mollit anim id est labo met, consectetur adipis</p> -->
+                    <h1>02</h1>
+                </div>
+            </a>
+            <!-- card 3 -->
+            <a href="jeux.html" class="speciality_card">
+                <img src="Images/icon 3.webp" alt="">
+                <div class="speciality_card_info">
+                    <h2>Jeux</h2>
+                    <!--<p>Oficia dese runt mollit anim id est labo met, consectetur adipis</p> -->
+                    <h1>03</h1>
+                </div>
+            </a>
+            <!-- card 4 -->
+            <a href="site.html" class="speciality_card">
+                <img src="Images/icon 4.webp" alt="">
+                <div class="speciality_card_info">
+                    <h2>Sites</h2>
+                    <!--<p>Oficia dese runt mollit anim id est labo met, consectetur adipis</p> -->
+                    <h1>04</h1>
+                </div>
+            </a>
+        </div>
+    </section>
+    
+    <div class="footer_bottom">
+        <p>Portfolio</p>
+    </div>
+
+
+    <!-- Typed JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.js"></script>
+    <!-- Swiper Slider JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const heartBtn = document.getElementById("heart-btn");
+            let isLiked = false;
+    
+            heartBtn.addEventListener("click", function () {
+                isLiked = !isLiked;
+                heartBtn.src = isLiked ? "Images/coeur2.png" : "Images/coeur1.png";
+            });
+        });
+    </script>
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.innerWidth > 500) return; // STOP si PC
+
+  const header = document.querySelector('header');
+  const heroContent = document.querySelector('.hero_content');
+  const heroImg = document.querySelector('.hero_img');
+  const brandSwiper = heroContent.querySelector('.brandSwiper');
+  const heroDescription = heroContent.querySelector('p');
+  const heroTitle = heroContent.querySelector('h1');
+
+  if (!heroContent || !heroImg || !brandSwiper || !heroTitle || !heroDescription) return;
+
+  // On vide hero_content pour réordonner
+  heroContent.innerHTML = '';
+
+  // Ordre voulu :
+  heroContent.appendChild(heroTitle);        // 1. Titre
+  heroContent.appendChild(heroImg);          // 2. Image hero (on déplace dans hero_content)
+  heroContent.appendChild(heroDescription);  // 3. Description
+  heroContent.appendChild(brandSwiper);      // 4. Slider
+});
+
+window.addEventListener("load", () => {
+    requestAnimationFrame(() => {
+        document.getElementById("fadeBlack").classList.add("hide");
+    });
+});
+
+
+function createCircle() {
+    const circle = document.createElement("div");
+    circle.classList.add("circle");
+
+    const size = Math.random() * 120 + 20; // 20px → 140px
+
+    circle.style.width = size + "px";
+    circle.style.height = size + "px";
+
+    circle.style.left = Math.random() * 100 + "vw";
+    circle.style.top = Math.random() * 100 + "vh";
+
+    document.getElementById("circle-layer").appendChild(circle);
+
+    // supprime après animation
+    setTimeout(() => {
+        circle.remove();
+    }, 3000);
+}
+
+// spawn en continu
+setInterval(createCircle, 400);
+
+</script>
+
+<script src="cursor.js"></script>
+</body>
+
+</html>

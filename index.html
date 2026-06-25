@@ -1,207 +1,545 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Remix icon  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.css">
-    <!-- Swiper Slider CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.css">
+    <title>Bienvenue</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            overflow:hidden;
+            background:black;
+            width:100vw;
+            height:100vh;
+        }
+
+        video{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100vw;
+            height:100vh;
+            object-fit:cover;
+            transition:opacity 0.6s ease;
+            z-index:-1;
+        }
+
+        #introVideo1{ opacity:1; }
+        #introVideo2{ opacity:0; }
+
+        /* 🎯 LOGO */
+        #logoVideo{
+            background: transparent;
+            position:fixed;
+            left:7px;              /* milieu gauche */
+            top:35%;
+            transform:translateY(-50%);
+            width:720px;
+            height:auto;
+            z-index:1000;
+
+            opacity:0;
+            transition:opacity 0.6s ease;
+            pointer-events:none;
+        }
+
+        #logoVideo.show{
+            opacity:1;
+        }
+
+/* ===================== */
+/* WRAP BOUTON */
+/* ===================== */
+#enterWrap{
+    position:fixed;
+    left:200px;
+    bottom:40px;
+    width:350px;
+    z-index:1000;
+    position:fixed;
+}
+
+/* bouton */
+#enterBtn{
+    width:100%;
+    height:auto;
+
+    opacity:0;
+    pointer-events:none;
+
+    transform:translateY(20px);
+    transition:opacity 1.2s ease, transform 1.2s ease;
+
+    cursor:url("./Images/crosshair2.png") 17 17, pointer;
+}
+
+#enterBtn.show{
+    opacity:1;
+    pointer-events:auto;
+    transform:translateY(0);
+}
+
+/* ===================== */
+/* SKULL COLLÉ COIN HAUT GAUCHE */
+/* ===================== */
+#skullVideo{
+    position:absolute;
+    top: 88px;
+  left: 45px;
+
+    width:90px;
+    height:auto;
+
+    transform:translate(-40%, -60%) rotate(-15deg);
+   z-index:1000000 !important;
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:opacity 0.4s ease, transform 0.6s ease;
+}
+
+#skullVideo.show{
+    opacity:1;
+    transform:translate(-40%, -80%) rotate(-10deg);
+}
+
+/* ===================== */
+/* ANIMATION BITE (CROQUE PAGE) */
+/* ===================== */
+#skullVideo.bite{
+    opacity:1 !important;
+    position:fixed;
+    left:0;
+    top:0;
+
+    transform-origin: center;
+    animation: biteZoomClean 1.2s ease-in forwards;
+    z-index:1000000 !important;
+    will-change: transform;
+}
+#skullVideo.zoom {
+    position: fixed;
+    animation: skullZoom 2.8s ease-in forwards;
+    transform-origin: center;
+    will-change: transform, opacity;
+}
+
+@keyframes skullZoom {
+    0% {
+        transform: translate(var(--x), var(--y)) scale(1) rotate(-15deg);
+        opacity: 1;
+    }
+
+    30% {
+        transform: translate(var(--x), calc(var(--y) - 40px)) scale(2) rotate(10deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(0vw, -180vh) scale(220);
+        opacity: 0;
+    }
+}
+#transitionOverlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    z-index:999998;
+    pointer-events:none;
+}
+
+#skullVideo{
+    z-index:1000000; /* IMPORTANT : skull au-dessus de tout */
+}
+
+
+@keyframes skullZoomFull {
+    0% {
+        transform: translate(0, 0) scale(1) rotate(-15deg);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translate(0, -50px) scale(2) rotate(10deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(0, -120vh) scale(220);
+        opacity: 0;
+    }
+}
+/* INDEX */
+
+
+#blackCover{
+    position:fixed;
+    inset:0;
+    background:black;
+    opacity:0;
+    pointer-events:none;
+    transition: none;
+
+    z-index:999999; /* AU-DESSUS DU SITE */
+}
+#blackCover.show{
+    opacity:1;
+}
+.hidden {
+    opacity: 0 !important;
+    pointer-events: none !important;
+transition: none;
+}
+
+@keyframes biteZoomClean{
+    0%{
+        transform: translate(var(--x), var(--y)) translateY(0px) scale(1) rotate(-15deg);
+    }
+
+    40%{
+        transform: translate(var(--x), var(--y)) translateY(-20px) scale(2) rotate(10deg);
+    }
+/* taille skull zoomer */
+    100%{
+        transform: translate(25vw, -260vh) translateY(-120px) scale(90);
+    }
+}
+@keyframes biteZoomStep2{
+    0%{
+        transform: translate(25vw, -260vh) translateY(-120px) scale(90);
+        opacity:1;
+    }
+
+    100%{
+        transform: translate(25vw, -460vh) translateY(-120px) scale(160);
+        opacity:0;
+    }
+}
+@keyframes biteZoomFromPos{
+    0%{
+        transform:translate(-40%, -60%) rotate(-15deg) scale(1);
+    }
+
+    40%{
+        transform:translate(-40%, -60%) rotate(10deg) scale(2);
+    }
+
+    100%{
+        transform:translate(-50%, -50%) scale(30);
+        position:fixed;
+        top:50%;
+        left:50%;
+    }
+}
+
+        .star-trail{
+            position:fixed;
+            pointer-events:none;
+            z-index:99999;
+            font-size:18px;
+            line-height:1;
+            user-select:none;
+            transform:translate(-50%, -50%);
+        }
+
+        body {
+            cursor: url("./Images/mouse.png") 4 4, auto;
+        }
+
+        a,
+        button {
+            cursor: url("./Images/crosshair2.png") 25 25, pointer !important;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="background"></div>
+
+    <!-- INTRO -->
+    <video id="introVideo1" autoplay muted playsinline>
+        <source src="Videos/Sequence1.mp4" type="video/mp4">
+    </video>
+
+    <!-- LOOP -->
+    <video id="introVideo2" muted playsinline preload="auto" loop>
+        <source src="Videos/Sequence2.mp4" type="video/mp4">
+    </video>
+
+<!-- LOGO -->
+<video id="logoVideo" muted playsinline>
+    <source src="Videos/logo_2.webm" type="video/webm">
+</video>
+
+    <!-- BOUTON -->
+<div id="enterWrap">
+
+    <video id="skullVideo" muted playsinline preload="auto">
+        <source src="Videos/skulll.webm" type="video/webm">
+    </video>
+
+    <img id="enterBtn" src="Images/bouton.png" alt="Entrer dans le Portfolio">
+
+</div>
 
 
-    <!-- NAV  -->
-    <nav>
-        <div class="logo">
-            <img src="Images/logo.png" alt="BotNexus Logo">
-        </div>
-        <ul class="menu">
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="galerie.html">Arts</a></li>
-            <li><a href="video.html">Videos</a></li>
-            <li><a href="jeux.html">Jeux</a></li>
-            <li><a href="site.html">Sites</a></li>
-        </ul>
-        <div class="nav_btns">
-  
-            <img id="heart-btn" src="Images/coeur1.png" alt="Like Button">
-        </div>
-        
-        <div class="bars">
-            <i class="ri-menu-2-line"></i>
-        </div>
-    </nav>
-    <!-- HERO HEADER  -->
-    <header>
-        <div class="hero_content">
-            <h1>Mon <span id="text"></span>
-                <br> Portfolio
-            </h1>
-            <p>Salut ! , je suis Cherifa. Bienvenue sur mon site où je présente mes différentes réalisations ⋆｡°✩ </p>
-            <!--<button>Get Connected</button> -->
-            <div class="swiper brandSwiper">
-                <div class="swiper-wrapper">
-                    <!-- slide 1 -->
-                    <div class="swiper-slide">
-                        <img src="Images/brand-01.webp" alt="">
-                    </div>
-                    <!-- slide 2 -->
-                    <div class="swiper-slide">
-                        <img src="Images/brand-02.webp" alt="">
-                    </div>
-                    <!-- slide 3 -->
-                    <div class="swiper-slide">
-                        <img src="Images/brand-03.webp" alt="">
-                    </div>
-                    <!-- slide 4 -->
-                    <div class="swiper-slide">
-                        <img src="Images/brand-04.webp" alt="">
-                    </div>
-                    <!-- slide 5 -->
-                    <div class="swiper-slide">
-                        <img src="Images/brand-05.webp" alt="">
-                    </div>
-                    <!-- slide 6 -->
-                    <div class="swiper-slide">
-                        <img src="Images/brand-06.webp" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="hero_img">
-            <div class="hero_img2">
-            <img src="Images/hero.jpg" alt="">
-        </div>
-            <div class="img_box">
-                <img src="Images/icon-01.webp" alt="">
 
-            </div>
-            <div class="img_box img_box2">
-                <img src="Images/avt-01.webp" alt="">
-
-            </div>
-        </div>
-        <div class="hero_shape"></div>
-    </header>
-    <!-- ABOUT  -->
-    <section class="about">
-        <div class="bg_shape"></div>
-        <img src="Images/about-02.webp" alt="" class="about_img_shape about_img_shape1">
-        <img src="Images/about-03.webp" alt="" class="about_img_shape about_img_shape2">
-        <img src="Images/about-04.webp" alt="" class="about_img_shape about_img_shape3">
-        <img src="Images/about-05.webp" alt="" class="about_img_shape about_img_shape4">
-        <div class="about_imgs">
-            <img src="Images/about-01.webp" alt="">
-        </div>
-        <div class="about_content">
-            <div class="Headings">
-                <h1>A propos de moi</h1>
-            </div>
-            <p>Passionnée par l'audiovisuel et le graphisme, je pratique le dessin traditionnel et digital , le montage vidéo  et la réalisation d'affiches .
-             </p>
-            <p>Étant étudiante en BUT Informatique, j'ai également pu réaliser des jeux et des sites.</p>
-
-        </div>
-    </section>
-    <!-- OUR SPECIALITY -->
-    <section class="speciality">
-        <div class="bg_shape"></div>
-        <div class="Headings">
-            <h1>Mes realisations</h1>
-     
-        </div>
-        <div class="speciality_cards">
-            <!-- card 1 -->
-            <a href="galerie.html" class="speciality_card">
-                <img src="Images/icon-1-1.webp"  alt="">
-                <div class="speciality_card_info">
-                    <h2>Arts</h2>
-                    <!--<p>Oficia dese runt mollit anim id est labo met, consectetur adipis</p> -->
-                    <h1>01</h1>
-                </div>
-            </a>
-            <!-- card 2 -->
-            <a href="video.html" class="speciality_card">
-                <img src="Images/icon-2-1.webp" alt="">
-                <div class="speciality_card_info">
-                    <h2>Videos</h2>
-                    <!--<p>Oficia dese runt mollit anim id est labo met, consectetur adipis</p> -->
-                    <h1>02</h1>
-                </div>
-            </a>
-            <!-- card 3 -->
-            <a href="jeux.html" class="speciality_card">
-                <img src="Images/icon-3-1.webp" alt="">
-                <div class="speciality_card_info">
-                    <h2>Jeux</h2>
-                    <!--<p>Oficia dese runt mollit anim id est labo met, consectetur adipis</p> -->
-                    <h1>03</h1>
-                </div>
-            </a>
-            <!-- card 4 -->
-            <a href="site.html" class="speciality_card">
-                <img src="Images/icon-4-1.webp" alt="">
-                <div class="speciality_card_info">
-                    <h2>Sites</h2>
-                    <!--<p>Oficia dese runt mollit anim id est labo met, consectetur adipis</p> -->
-                    <h1>04</h1>
-                </div>
-            </a>
-        </div>
-    </section>
-    
-    <div class="footer_bottom">
-        <p>Portfolio</p>
-    </div>
-
-
-    <!-- Typed JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.js"></script>
-    <!-- Swiper Slider JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
-    <script src="script.js"></script>
-    
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const heartBtn = document.getElementById("heart-btn");
-            let isLiked = false;
-    
-            heartBtn.addEventListener("click", function () {
-                isLiked = !isLiked;
-                heartBtn.src = isLiked ? "Images/coeur2.png" : "Images/coeur1.png";
-            });
-        });
-    </script>
-    <script>
-document.addEventListener("DOMContentLoaded", () => {
-  if (window.innerWidth > 500) return; // STOP si PC
+const isMobile = window.innerWidth <= 768;
 
-  const header = document.querySelector('header');
-  const heroContent = document.querySelector('.hero_content');
-  const heroImg = document.querySelector('.hero_img');
-  const brandSwiper = heroContent.querySelector('.brandSwiper');
-  const heroDescription = heroContent.querySelector('p');
-  const heroTitle = heroContent.querySelector('h1');
+if (isMobile) {
+    window.location.replace("dep.html");
+}
 
-  if (!heroContent || !heroImg || !brandSwiper || !heroTitle || !heroDescription) return;
 
-  // On vide hero_content pour réordonner
-  heroContent.innerHTML = '';
+const v1 = document.getElementById("introVideo1");
+const v2 = document.getElementById("introVideo2");
+const logo = document.getElementById("logoVideo");
+const btn = document.getElementById("enterBtn");
+const skull = document.getElementById("skullVideo");
+const wrap = document.getElementById("enterWrap");
+const BITE_TRIGGER_TIME = 1.85; // temps mâchoire fermée
+let biteStart = null;
 
-  // Ordre voulu :
-  heroContent.appendChild(heroTitle);        // 1. Titre
-  heroContent.appendChild(heroImg);          // 2. Image hero (on déplace dans hero_content)
-  heroContent.appendChild(heroDescription);  // 3. Description
-  heroContent.appendChild(brandSwiper);      // 4. Slider
+/* bouton + logo */
+if (!isMobile) {
+setTimeout(() => {
+
+    logo.classList.add("show");
+
+    logo.load();
+    logo.currentTime = 0;
+
+    requestAnimationFrame(() => {
+        const p = logo.play();
+
+        if (p !== undefined) {
+            p.catch(() => {});
+        }
+    });
+
+    // bouton 1 seconde plus tard
+setTimeout(() => {
+    btn.classList.add("show");
+    skull.classList.add("show");
+}, 2000);
+
+}, 6200);
+
+
+logo.addEventListener("ended", () => {
+    logo.pause();
+    logo.currentTime = logo.duration - 0.01;
 });
-</script>
+}
 
+/* transition vidéo */
+v1.addEventListener("ended", () => {
+    v2.currentTime = 0;
+    v2.play();
+
+    v2.style.opacity = "1";
+    v1.style.opacity = "0";
+});
+function checkBite() {
+
+    const t = (performance.now() - biteStart) / 1000;
+
+    // UI OFF
+    if (t > 2 && !window.uiHidden) {
+        window.uiHidden = true;
+
+        logo.style.transition = "none";
+        btn.style.transition = "none";
+
+        logo.style.opacity = "0";
+        btn.style.opacity = "0";
+    }
+
+    // BLACK ON
+    if (t > 2 && !window.blackOn) {
+        window.blackOn = true;
+        const black = document.getElementById("blackCover");
+        black.style.opacity = "1";
+    }
+
+    // 💀 STEP 1 -> STEP 2
+if (t > 2.3 && !window.skullLaunched) {
+
+    window.skullLaunched = true;
+
+    skull.style.animation = "biteZoomClean 1.2s ease-in forwards";
+
+    setTimeout(() => {
+
+        // on laisse la dernière frame de biteZoomClean
+        skull.style.animationPlayState = "paused";
+
+        setTimeout(() => {
+
+            skull.style.animation = "biteZoomStep2 0.80s ease-in forwards";// TEMPS zoom 2
+
+        }, 10); // pause skull
+
+    }, 50);
+}
+
+if (t > 2.4 && !window.redirected) {
+    window.redirected = true;
+
+    const black = document.getElementById("blackCover");
+    black.classList.add("show"); // fade noir ON
+
+    setTimeout(() => {
+    document.body.style.opacity = "0";
+    document.body.style.transition = "opacity 0.6s ease";
+
+    setTimeout(() => {
+        window.location.href = "dep.html";
+    }, 600);
+
+}, 1200);
+
+    return;
+}
+    requestAnimationFrame(checkBite);
+}
+btn.addEventListener("click", () => {
+
+    if (window.lock) return;
+    window.lock = true;
+
+    btn.style.pointerEvents = "none";
+
+    const rect = skull.getBoundingClientRect();
+
+    skull.style.position = "fixed";
+    skull.style.left = rect.left + "px";
+    skull.style.top = rect.top + "px";
+
+    skull.style.setProperty("--x", "0px");
+    skull.style.setProperty("--y", "0px");
+
+    skull.currentTime = 0;
+
+    // 🔥 IMPORTANT : force load avant play
+    skull.load();
+
+    const playPromise = skull.play();
+    if (playPromise) {
+        playPromise.catch(() => {
+            console.log("skull play blocked mais click OK");
+        });
+    }
+
+    skull.classList.add("bite");
+document.getElementById("blackCover").style.zIndex = "1";
+skull.style.zIndex = "1000000";
+    biteStart = performance.now();
+
+    requestAnimationFrame(checkBite);
+});
+
+
+
+
+/* =========================
+   TRAÎNÉE ÉTOILE PROPRE
+========================= */
+
+const stars = [];
+const STAR_COUNT = 30;
+
+let mouseX = innerWidth / 2;
+let mouseY = innerHeight / 2;
+
+let lastMoveTime = Date.now();
+
+document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    lastMoveTime = Date.now();
+
+    stars.forEach(s => {
+        s.el.style.opacity = "1";
+    });
+});
+
+for (let i = 0; i < STAR_COUNT; i++) {
+
+    const el = document.createElement("div");
+    el.innerHTML = "★";
+
+    el.style.position = "fixed";
+    el.style.pointerEvents = "none";
+    el.style.zIndex = "99999";
+
+    el.style.fontSize = (34 - i * 0.5) + "px";
+    el.style.color = "#ff4db8";
+    el.style.textShadow = "0 0 10px #ff4db8, 0 0 20px #ff1493";
+    el.style.transform = "translate(-50%, -50%)";
+    el.style.transition = "opacity 0.25s ease";
+
+    document.body.appendChild(el);
+
+    stars.push({
+        el,
+        x: mouseX,
+        y: mouseY
+    });
+}
+
+function animate() {
+
+    const idleTime = Date.now() - lastMoveTime;
+    const idleProgress = Math.min(idleTime / 600, 1);
+
+    let x = mouseX;
+    let y = mouseY;
+
+    stars.forEach((s, i) => {
+
+        s.x += (x - s.x) * 0.25;
+        s.y += (y - s.y) * 0.25;
+
+        s.el.style.left = s.x + "px";
+        s.el.style.top = s.y + "px";
+
+        const baseOpacity = (1 - i / STAR_COUNT) * 0.9;
+        const fadeOut = 1 - idleProgress;
+
+        s.el.style.opacity = baseOpacity * fadeOut;
+
+        const scale = 1 - (i / STAR_COUNT) * 0.7;
+
+        s.el.style.transform =
+            `translate(-50%, -50%) scale(${scale})`;
+
+        x = s.x;
+        y = s.y;
+    });
+
+    requestAnimationFrame(animate);
+}
+logo.addEventListener("ended", () => {
+    logo.pause();
+    logo.currentTime = logo.duration; // bloque dernière frame
+});
+
+animate();
+
+    </script>
+
+<div id="blackCover"></div>
 
 </body>
 
