@@ -298,7 +298,7 @@ transition: none;
     <div class="spinner"></div>
 </div>
     <!-- INTRO -->
-    <video id="introVideo1" autoplay muted playsinline preload="auto">
+    <video id="introVideo1" muted playsinline preload="auto">
         <source src="Videos/Sequence1.webm" type="video/webm">
     </video>
 
@@ -353,6 +353,8 @@ function startIntro() {
     const loader = document.getElementById("loader");
     if (loader) {
         loader.classList.add("hide");
+        v1.currentTime = 0;
+v1.play();
         setTimeout(() => loader.remove(), 500);
     }
 
@@ -384,15 +386,14 @@ function runIntro(){
 if (!isMobile) {
 setTimeout(() => {
 
-    logo.classList.add("show");
+logo.classList.add("show");
 
-    logo.load();
-    logo.currentTime = 0;
+logo.pause();
+logo.currentTime = 0;
 
-    requestAnimationFrame(() => {
-        const p = logo.play();
-        if (p !== undefined) p.catch(() => {});
-    });
+requestAnimationFrame(() => {
+    logo.play().catch(() => {});
+});
 
     setTimeout(() => {
         btn.classList.add("show");
@@ -485,10 +486,10 @@ btn.addEventListener("click", () => {
     skull.style.setProperty("--x", "0px");
     skull.style.setProperty("--y", "0px");
 
-    skull.currentTime = 0;
-    skull.load();
+skull.pause();
+skull.currentTime = 0;
 
-    const playPromise = skull.play();
+const playPromise = skull.play();
     if (playPromise) playPromise.catch(() => {});
 
     skull.classList.add("bite");
