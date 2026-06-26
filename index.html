@@ -259,23 +259,56 @@ transition: none;
         button {
             cursor: url("./Images/crosshair2.png") 25 25, pointer !important;
         }
+
+
+        #loader{
+    position:fixed;
+    inset:0;
+    background:black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999999;
+}
+
+.spinner{
+    width:60px;
+    height:60px;
+    border:4px solid rgba(255,255,255,0.2);
+    border-top:4px solid #ff2fa5;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+}
+
+#loader.hide{
+    opacity:0;
+    pointer-events:none;
+    transition:0.5s ease;
+}
     </style>
 </head>
 
 <body>
-
+<div id="loader">
+    <div class="spinner"></div>
+</div>
     <!-- INTRO -->
-    <video id="introVideo1" autoplay muted playsinline>
-        <source src="Videos/Sequence1.mp4" type="video/mp4">
+    <video id="introVideo1" autoplay muted playsinline preload="auto">
+        <source src="Videos/Sequence1.webm" type="video/webm">
     </video>
 
     <!-- LOOP -->
     <video id="introVideo2" muted playsinline preload="auto" loop>
-        <source src="Videos/Sequence2.mp4" type="video/mp4">
+        <source src="Videos/Sequence2.webm" type="video/webm">
     </video>
 
 <!-- LOGO -->
-<video id="logoVideo" muted playsinline>
+<video id="logoVideo" muted playsinline preload="auto" >
     <source src="Videos/logo_2.webm" type="video/webm">
 </video>
 
@@ -290,24 +323,62 @@ transition: none;
 
 </div>
 
-
-
-    <script>
+<script>
 const isMobile = window.innerWidth <= 768;
 
 if (isMobile) {
     window.location.replace("dep.html");
 }
 
+/* =========================
+   LOADER
+========================= */
 
+/* =========================
+   VIDEOS
+========================= */
 const v1 = document.getElementById("introVideo1");
 const v2 = document.getElementById("introVideo2");
 const logo = document.getElementById("logoVideo");
 const btn = document.getElementById("enterBtn");
 const skull = document.getElementById("skullVideo");
 const wrap = document.getElementById("enterWrap");
-const BITE_TRIGGER_TIME = 1.85; // temps mâchoire fermée
+
+let introStarted = false;
+
+function startIntro() {
+    if (introStarted) return;
+    introStarted = true;
+
+    const loader = document.getElementById("loader");
+    if (loader) {
+        loader.classList.add("hide");
+        setTimeout(() => loader.remove(), 500);
+    }
+
+    setTimeout(runIntro, 300); // petit buffer sécurité
+}
+
+function forceStart() {
+    startIntro();
+}
+
+Promise.all([
+    document.getElementById("introVideo1").readyState >= 2,
+    document.getElementById("introVideo2").readyState >= 2,
+    document.getElementById("logoVideo").readyState >= 2,
+    document.getElementById("skullVideo").readyState >= 2
+]);
+
+window.addEventListener("load", () => {
+    setTimeout(startIntro, 800);
+});
+/* =========================
+   INTRO
+========================= */
 let biteStart = null;
+
+function runIntro(){
 
 /* bouton + logo */
 if (!isMobile) {
@@ -320,20 +391,15 @@ setTimeout(() => {
 
     requestAnimationFrame(() => {
         const p = logo.play();
-
-        if (p !== undefined) {
-            p.catch(() => {});
-        }
+        if (p !== undefined) p.catch(() => {});
     });
 
-    // bouton 1 seconde plus tard
-setTimeout(() => {
-    btn.classList.add("show");
-    skull.classList.add("show");
-}, 2000);
+    setTimeout(() => {
+        btn.classList.add("show");
+        skull.classList.add("show");
+    }, 2000);
 
 }, 6200);
-
 
 logo.addEventListener("ended", () => {
     logo.pause();
@@ -345,73 +411,64 @@ logo.addEventListener("ended", () => {
 v1.addEventListener("ended", () => {
     v2.currentTime = 0;
     v2.play();
-
     v2.style.opacity = "1";
     v1.style.opacity = "0";
 });
+
 function checkBite() {
 
     const t = (performance.now() - biteStart) / 1000;
 
-    // UI OFF
     if (t > 2 && !window.uiHidden) {
         window.uiHidden = true;
-
         logo.style.transition = "none";
         btn.style.transition = "none";
-
         logo.style.opacity = "0";
         btn.style.opacity = "0";
     }
 
-    // BLACK ON
     if (t > 2 && !window.blackOn) {
         window.blackOn = true;
-        const black = document.getElementById("blackCover");
-        black.style.opacity = "1";
+        document.getElementById("blackCover").style.opacity = "1";
     }
 
-    // 💀 STEP 1 -> STEP 2
-if (t > 2.3 && !window.skullLaunched) {
+    if (t > 2.3 && !window.skullLaunched) {
+        window.skullLaunched = true;
 
-    window.skullLaunched = true;
-
-    skull.style.animation = "biteZoomClean 1.2s ease-in forwards";
-
-    setTimeout(() => {
-
-        // on laisse la dernière frame de biteZoomClean
-        skull.style.animationPlayState = "paused";
+        skull.style.animation = "biteZoomClean 1.2s ease-in forwards";
 
         setTimeout(() => {
+            skull.style.animationPlayState = "paused";
 
-            skull.style.animation = "biteZoomStep2 0.80s ease-in forwards";// TEMPS zoom 2
+            setTimeout(() => {
+                skull.style.animation = "biteZoomStep2 0.80s ease-in forwards";
+            }, 10);
 
-        }, 10); // pause skull
+        }, 50);
+    }
 
-    }, 50);
-}
+    if (t > 2.4 && !window.redirected) {
+        window.redirected = true;
 
-if (t > 2.4 && !window.redirected) {
-    window.redirected = true;
+        const black = document.getElementById("blackCover");
+        black.classList.add("show");
 
-    const black = document.getElementById("blackCover");
-    black.classList.add("show"); // fade noir ON
+        setTimeout(() => {
+            document.body.style.opacity = "0";
+            document.body.style.transition = "opacity 0.6s ease";
 
-    setTimeout(() => {
-    document.body.style.opacity = "0";
-    document.body.style.transition = "opacity 0.6s ease";
+            setTimeout(() => {
+                window.location.href = "dep.html";
+            }, 600);
 
-    setTimeout(() => {
-        window.location.href = "dep.html";
-    }, 600);
+        }, 1200);
 
-}, 1200);
+        return;
+    }
 
-    return;
-}
     requestAnimationFrame(checkBite);
 }
+
 btn.addEventListener("click", () => {
 
     if (window.lock) return;
@@ -429,49 +486,35 @@ btn.addEventListener("click", () => {
     skull.style.setProperty("--y", "0px");
 
     skull.currentTime = 0;
-
-    // 🔥 IMPORTANT : force load avant play
     skull.load();
 
     const playPromise = skull.play();
-    if (playPromise) {
-        playPromise.catch(() => {
-            console.log("skull play blocked mais click OK");
-        });
-    }
+    if (playPromise) playPromise.catch(() => {});
 
     skull.classList.add("bite");
-document.getElementById("blackCover").style.zIndex = "1";
-skull.style.zIndex = "1000000";
-    biteStart = performance.now();
+    document.getElementById("blackCover").style.zIndex = "1";
+    skull.style.zIndex = "1000000";
 
+    biteStart = performance.now();
     requestAnimationFrame(checkBite);
 });
 
-
-
-
 /* =========================
-   TRAÎNÉE ÉTOILE PROPRE
+   TRAÎNÉE ÉTOILE
 ========================= */
-
 const stars = [];
 const STAR_COUNT = 30;
 
 let mouseX = innerWidth / 2;
 let mouseY = innerHeight / 2;
-
 let lastMoveTime = Date.now();
 
 document.addEventListener("mousemove", (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-
     lastMoveTime = Date.now();
 
-    stars.forEach(s => {
-        s.el.style.opacity = "1";
-    });
+    stars.forEach(s => s.el.style.opacity = "1");
 });
 
 for (let i = 0; i < STAR_COUNT; i++) {
@@ -482,7 +525,6 @@ for (let i = 0; i < STAR_COUNT; i++) {
     el.style.position = "fixed";
     el.style.pointerEvents = "none";
     el.style.zIndex = "99999";
-
     el.style.fontSize = (34 - i * 0.5) + "px";
     el.style.color = "#ff4db8";
     el.style.textShadow = "0 0 10px #ff4db8, 0 0 20px #ff1493";
@@ -491,11 +533,7 @@ for (let i = 0; i < STAR_COUNT; i++) {
 
     document.body.appendChild(el);
 
-    stars.push({
-        el,
-        x: mouseX,
-        y: mouseY
-    });
+    stars.push({ el, x: mouseX, y: mouseY });
 }
 
 function animate() {
@@ -530,15 +568,16 @@ function animate() {
 
     requestAnimationFrame(animate);
 }
+
 logo.addEventListener("ended", () => {
     logo.pause();
-    logo.currentTime = logo.duration; // bloque dernière frame
+    logo.currentTime = logo.duration;
 });
 
 animate();
 
-    </script>
-
+}
+</script>
 <div id="blackCover"></div>
 
 </body>
