@@ -98,6 +98,7 @@
 /* SKULL COLLÉ COIN HAUT GAUCHE */
 /* ===================== */
 #skullVideo{
+    z-index:1000000;
     position:absolute;
     top: 88px;
   left: 45px;
@@ -166,9 +167,6 @@ height: auto;
     pointer-events:none;
 }
 
-#skullVideo{
-    z-index:1000000; /* IMPORTANT : skull au-dessus de tout */
-}
 
 
 @keyframes skullZoomFull {
@@ -224,6 +222,7 @@ height: auto;
         --bite-scale-2:170;
     }
 }
+/*
 @media (max-width:1650px){
     :root{
         --skull-size: 95px;
@@ -234,7 +233,7 @@ height: auto;
         --bite-scale-1:95;
         --bite-scale-2:150;
     }
-}
+}*/
 
 @media (max-width:1200px){
     :root{
