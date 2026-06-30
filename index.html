@@ -185,56 +185,45 @@ height: auto;
         opacity: 0;
     }
 }
-
-
 @media (min-width:1800px){
     :root{
         --skull-size: 90px;
 
         --bite-end-x:30vw;
-        --bite-end-y:-230vh;
+        --bite-end-y:-255vh;
 
         --bite-scale-1:130;
         --bite-scale-2:220;
     }
 }
-@media (max-width:1700px){ /* ton pc */ 
 
+/* 💻 desktop standard (1700 → 1800) */
+@media (max-width:1799px) and (min-width:1601px){
     :root{
         --skull-size: 90px;
-        --bite-end-x:20vw;/* centrage */
-        --bite-end-y:-300vh;/*aug  hauteur */
+
+        --bite-end-x:20vw;
+        --bite-end-y:-300vh;
 
         --bite-scale-1:95;
         --bite-scale-2:150;
-
     }
+}
 
-} 
-@media (max-width:1600px){
+/* 💻 laptop (1600 → 1201) */
+@media (max-width:1600px) and (min-width:1201px){
     :root{
         --skull-size: 95px;
 
         --bite-end-x:20vw;
-        --bite-end-y:-310vh;
+        --bite-end-y:-330vh;
 
         --bite-scale-1:115;
         --bite-scale-2:170;
     }
 }
-/*
-@media (max-width:1650px){
-    :root{
-        --skull-size: 95px;
 
-        --bite-end-x:20vw;
-        --bite-end-y:-290vh;
-
-        --bite-scale-1:95;
-        --bite-scale-2:150;
-    }
-}*/
-
+/* 📱 petit écran */
 @media (max-width:1200px){
     :root{
         --skull-size: 70px;
