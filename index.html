@@ -7,6 +7,9 @@
 
     <style>
 :root{
+    --logo-size: 720px;
+    --button-size: 350px;
+    --button-left: 200px;
     --skull-size: 90px;
 
     --bite-end-x: 25vw;
@@ -49,7 +52,7 @@
             left:7px;              /* milieu gauche */
             top:35%;
             transform:translateY(-50%);
-            width:720px;
+            width: var(--logo-size);
             height:auto;
             z-index:1000;
 
@@ -63,13 +66,13 @@
         }
 
 /* ===================== */
-/* WRAP BOUTON */
+/* BOUTON */
 /* ===================== */
 #enterWrap{
     position:fixed;
-    left:200px;
+    left: var(--button-left);
     bottom:40px;
-    width:350px;
+    width: var(--button-size);
     z-index:1000;
     position:fixed;
 }
@@ -185,8 +188,14 @@ height: auto;
         opacity: 0;
     }
 }
+
+
 @media (min-width:1800px){
     :root{
+        --logo-size: 900px;
+        --button-size:470px;
+        --button-left: 230px;
+
         --skull-size: 90px;
 
         --bite-end-x:30vw;
@@ -200,6 +209,9 @@ height: auto;
 /* 💻 desktop standard (1700 → 1800) */
 @media (max-width:1799px) and (min-width:1601px){
     :root{
+        --logo-size:720px;
+        --button-size:350px;
+        
         --skull-size: 90px;
 
         --bite-end-x:20vw;
@@ -213,6 +225,10 @@ height: auto;
 /* 💻 laptop (1600 → 1201) */
 @media (max-width:1600px) and (min-width:1201px){
     :root{
+        --logo-size: 720px;
+        --button-size: 350px;
+
+
         --skull-size: 95px;
 
         --bite-end-x:20vw;
@@ -226,10 +242,13 @@ height: auto;
 /* 📱 petit écran */
 @media (max-width:1200px){
     :root{
+         --logo-size:580px;
+        --button-size:300px;
+        --button-left: 150px;
         --skull-size: 70px;
 
         --bite-end-x:20vw;
-        --bite-end-y:-300vh;
+        --bite-end-y:-320vh;
 
         --bite-scale-1:135;
         --bite-scale-2:200;

@@ -285,14 +285,19 @@ top: -14px;
     font-family: var(--Kaushan-font);
 }*/
 
+:root{
+    --logo-width: 188px;
+    --logo-height: 131px;
+
+} 
 .logo a {
     display: inline-block;
 }
 
 
 .logo img{
-width: 188px;
-  height: 131px;
+width: var(--logo-width);
+  height: var(--logo-height);
     display: block;
 
     transform: scale(1.4);
@@ -1514,6 +1519,13 @@ header{
 
 /* MQ SECTION  */
 
+  @media (min-width:1800px){
+    :root{
+        --logo-width: 238px;
+        --logo-height: 171px;
+
+    }
+}
 @media (max-width:1500px) {
     body {
         background: url('Images/fond2-thumb.jpg') no-repeat top center;
